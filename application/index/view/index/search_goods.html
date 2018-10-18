@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>搜索页面</title>
+
+    <link rel="icon" type="image/png" href="http://jianengzhiye.qiuyunxin.com/static/assets/i/favicon.png">
+    <link href="http://jianengzhiye.qiuyunxin.com/static/home/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
+    <link href="http://jianengzhiye.qiuyunxin.com/static/home/assets/css/admin.css" rel="stylesheet" type="text/css" />
+
+    <link href="http://jianengzhiye.qiuyunxin.com/static/home/basic/css/demo.css" rel="stylesheet" type="text/css" />
+
+    <link href="http://jianengzhiye.qiuyunxin.com/static/home/css/seastyle.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="http://jianengzhiye.qiuyunxin.com/static/home/basic/js/jquery-1.7.min.js"></script>
+    <script type="text/javascript" src="http://jianengzhiye.qiuyunxin.com/static/home/js/script.js"></script>
+</head>
+
+<body>
+
+    <!--顶部导航条 -->
+    <div class="am-container header">
+        <ul class="message-l">
+            <div class="topMessage">
+                <div class="menu-hd">
+                    {if condition="$user eq null"}
+                        <a href="{:url('index/index/login')}" target="_top" class="h">亲，请登录</a> |
+                        <a href="{:url('index/index/register')}" target="_top">免费注册</a>
+                    {else/}
+                        <a>欢迎光临,<span style="color: red">{$user}</span></a>
+                        <a href="{:url('index/index/logout')}">退出</a>
+                    {/if}
+                </div>
+            </div>
+        </ul>
+    </div>
+
+    <!--悬浮搜索框-->
+
+    <div class="nav white">
+        <div class="logoBig">
+        </div>
+
+        <div class="search-bar pr">
+            <a name="index_none_header_sysc" href="#"></a>
+            <form action="{:url('index/index/search_goods')}" method="post">
+                <input name="order" type="hidden" value="purchase">
+                <input id="searchInput" name="goods_name" type="text" placeholder="搜索" autocomplete="off">
+                <input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
+            </form>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+    <b class="line"></b>
+    <div class="search">
+        <div class="search-list">
+            <div class="nav-table">
+                <div class="long-title"><span class="all-goods">全部分类</span></div>
+                <div class="nav-cont">
+                    <ul>
+                        <li class="index"><a onclick="navigate('index')" href="javascript:;">首页</a></li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="am-g am-g-fixed">
+                <div class="am-u-sm-12 am-u-md-12">
+                    <div class="theme-popover">
+                        <div class="searchAbout">
+
+                        </div>
+                        <ul class="select">
+                            <p class="title font-normal">
+                                <span class="fl">{$goods_name}</span>
+                                <span class="total fl">搜索到<strong class="num" style="color: red;">{$count}</strong>件相关商品</span>
+                            </p>
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="search-content">
+                        <div class="sort">
+                            <li class="first"><a title="销量" onclick="sort('{$goods_name}','purchase')" href="javascript:;">销量排序</a></li>
+                            <li><a title="价格" onclick="sort('{$goods_name}','retail_price')" href="javascript:;">价格优先</a></li>
+                        </div>
+                        <div class="clear"></div>
+                            {volist name="list" id="vo"}
+                                <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 boxes">
+                                    <li>
+                                        <div class="i-pic limit" onclick="introduction('{$vo.id}')">
+                                            <img src="{$vo.picture}" />
+                                            <p class="title fl">{$vo.goods_name}</p>
+                                            <p class="price fl">
+                                                <b>¥</b>
+                                                <strong>{$vo.retail_price}</strong>
+                                            </p>
+                                            <p class="number fl">
+                                                销量<span>{$vo.purchase}</span>
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            {/volist}
+                    </div>
+                    <div class="clear"></div>
+                    <!--分页 -->
+                    <ul class="am-pagination am-pagination-right">
+                        <li>{$list->render()}</li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="footer">
+            </div>
+        </div>
+
+    </div>
+
+    <!--引导 -->
+    <div class="navCir">
+        <li><a onclick="navigate('index')" href="javascript:;"><i class="am-icon-home "></i>首页</a></li>
+        <li><a href="{:url('cate_index')}"><i class="am-icon-list"></i>分类</a></li>
+        <li><a href="shopcart.html"><i class="am-icon-shopping-basket"></i>购物车</a></li>
+        <li><a href="http://jianengzhiye.qiuyunxin.com/static/home/person/index.html"><i class="am-icon-user"></i>我的</a></li>
+    </div>
+
+    <script>
+        window.jQuery || document.write('<script src="http://jianengzhiye.qiuyunxin.com/static/home/basic/js/jquery-1.9.min.js"><\/script>');
+    </script>
+    <script type="text/javascript" src="http://jianengzhiye.qiuyunxin.com/static/home/basic/js/quick_links.js"></script>
+
+    <div class="theme-popover-mask"></div>
+    
+    <script>
+        function sort(goods_name,order){
+            var form1 = document.createElement("form");
+            form1.id = "form1";
+            form1.name = "form1";
+            document.body.appendChild(form1);
+            var input1 = document.createElement("input");
+            input1.type = "hidden";
+            input1.name = "goods_name";
+            input1.value = goods_name;
+            var input2 = document.createElement("input");
+            input2.type = "hidden";
+            input2.name = "order";
+            input2.value = order;
+            form1.appendChild(input1);
+            form1.appendChild(input2);
+            form1.method = "post";
+            form1.action = "search_goods"
+            form1.submit();
+            document.body.removeChild(form1);
+        };
+        function navigate(url){
+            var form1 = document.createElement("form");
+            form1.id = "form1";
+            form1.name = "form1";
+            document.body.appendChild(form1);
+            var input1 = document.createElement("input");
+            input1.type = "hidden";
+            input1.name = "mode";
+            input1.value = "other";
+            form1.appendChild(input1);
+            form1.method = "post";
+            form1.action = url;
+            form1.submit();
+            document.body.removeChild(form1);
+        };
+        function introduction(id) {
+            var form1 = document.createElement("form");
+            form1.id = "form1";
+            form1.name = "form1";
+            document.body.appendChild(form1);
+            var input1 = document.createElement("input");
+            input1.type = "hidden";
+            input1.name = "id";
+            input1.value = id;
+            form1.appendChild(input1);
+            form1.method = "post";
+            form1.action = "production_introduction";
+            form1.submit();
+            document.body.removeChild(form1);
+        }
+    </script>
+    </body>
+
+</html>

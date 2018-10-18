@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>分类管理</title>
+    <meta name="description" content="这是一个 index 页面">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="http://jianengzhiye.qiuyunxin.com/static/assets/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="http://jianengzhiye.qiuyunxin.com/static/assets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <script src="http://jianengzhiye.qiuyunxin.com/static/assets/js/echarts.min.js"></script>
+    <link rel="stylesheet" href="http://jianengzhiye.qiuyunxin.com/static/assets/css/amazeui.min.css" />
+    <link rel="stylesheet" href="http://jianengzhiye.qiuyunxin.com/static/assets/css/amazeui.datatables.min.css" />
+    <link rel="stylesheet" href="http://jianengzhiye.qiuyunxin.com/static/assets/css/app.css">
+    <script src="http://jianengzhiye.qiuyunxin.com/static/assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://jianengzhiye.qiuyunxin.com/static/webuploader/0.1.5/webuploader.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://jianengzhiye.qiuyunxin.com/static/webuploader/0.1.5/webuploader.css">
+
+</head>
+
+<body data-type="widgets">
+<script src="http://jianengzhiye.qiuyunxin.com/static/assets/js/theme.js"></script>
+<div class="am-g tpl-g">
+    <!-- 头部 -->
+    <header>
+        <!-- logo -->
+        <div class="am-fl tpl-header-logo">
+            <a href="javascript:;"><img src="http://jianengzhiye.qiuyunxin.com/static/assets/img/logo.png" alt=""></a>
+        </div>
+        <!-- 右侧内容 -->
+        <div class="tpl-header-fluid">
+            <!-- 侧边切换 -->
+            <div class="am-fl tpl-header-switch-button am-icon-list">
+                    <span>
+
+                </span>
+            </div>
+            <!-- 搜索 -->
+            <div class="am-fl tpl-header-search">
+                <!--<form class="tpl-header-search-form" action="javascript:;">-->
+                    <!--<button class="tpl-header-search-btn am-icon-search"></button>-->
+                    <!--<input class="tpl-header-search-box" type="text" placeholder="搜索内容...">-->
+                <!--</form>-->
+            </div>
+            <!-- 其它功能-->
+            <div class="am-fr tpl-header-navbar">
+                <ul>
+                    <!-- 欢迎语 -->
+                    <li class="am-text-sm tpl-header-navbar-welcome">
+                        <a href="javascript:;">欢迎你, <span>{$username}</span> </a>
+                    </li>
+
+                    <!-- 新邮件 -->
+                    <!--                    <li class="am-dropdown tpl-dropdown" data-am-dropdown>
+                                            <a href="javascript:;" class="am-dropdown-toggle tpl-dropdown-toggle" data-am-dropdown-toggle>
+                                                <i class="am-icon-envelope"></i>
+                                                <span class="am-badge am-badge-success am-round item-feed-badge">4</span>
+                                            </a>
+                                            &lt;!&ndash; 弹出列表 &ndash;&gt;
+                                            <ul class="am-dropdown-content tpl-dropdown-content">
+                                                <li class="tpl-dropdown-menu-messages">
+                                                    <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
+                                                        <div class="menu-messages-ico">
+                                                            <img src="http://jianengzhiye.qiuyunxin.com/static/assets/img/user04.png" alt="">
+                                                        </div>
+                                                        <div class="menu-messages-time">
+                                                            3小时前
+                                                        </div>
+                                                        <div class="menu-messages-content">
+                                                            <div class="menu-messages-content-title">
+                                                                <i class="am-icon-circle-o am-text-success"></i>
+                                                                <span>夕风色</span>
+                                                            </div>
+                                                            <div class="am-text-truncate"> Amaze UI 的诞生，依托于 GitHub 及其他技术社区上一些优秀的资源；Amaze UI 的成长，则离不开用户的支持。 </div>
+                                                            <div class="menu-messages-content-time">2016-09-21 下午 16:40</div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+
+                                                <li class="tpl-dropdown-menu-messages">
+                                                    <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
+                                                        <div class="menu-messages-ico">
+                                                            <img src="http://jianengzhiye.qiuyunxin.com/static/assets/img/user02.png" alt="">
+                                                        </div>
+                                                        <div class="menu-messages-time">
+                                                            5天前
+                                                        </div>
+                                                        <div class="menu-messages-content">
+                                                            <div class="menu-messages-content-title">
+                                                                <i class="am-icon-circle-o am-text-warning"></i>
+                                                                <span>佳能纸业</span>
+                                                            </div>
+                                                            <div class="am-text-truncate"> 为了能最准确的传达所描述的问题， 建议你在反馈时附上演示，方便我们理解。 </div>
+                                                            <div class="menu-messages-content-time">2016-09-16 上午 09:23</div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li class="tpl-dropdown-menu-messages">
+                                                    <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
+                                                        <i class="am-icon-circle-o"></i> 进入列表…
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>-->
+
+                    <!-- 新提示 -->
+                    <li class="am-dropdown" data-am-dropdown>
+                        <a href="javascript:;" class="am-dropdown-toggle" data-am-dropdown-toggle>
+                            <i class="am-icon-bell"></i>
+                            <span id="remind" class="am-badge am-badge-warning am-round item-feed-badge"></span>
+                        </a>
+                        <audio id="mp3"src="http://jianengzhiye.qiuyunxin.com/static/assets/img/552857.mp3"></audio>
+                        <!-- 弹出列表 -->
+                        <ul class="am-dropdown-content tpl-dropdown-content">
+                            <!--                            <li class="tpl-dropdown-menu-notifications">
+                                                            <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
+                                                                <div class="tpl-dropdown-menu-notifications-title">
+                                                                    <i class="am-icon-line-chart"></i>
+                                                                    <span> 有6笔新的销售订单</span>
+                                                                </div>
+                                                                <div class="tpl-dropdown-menu-notifications-time">
+                                                                    12分钟前
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li class="tpl-dropdown-menu-notifications">
+                                                            <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
+                                                                <div class="tpl-dropdown-menu-notifications-title">
+                                                                    <i class="am-icon-star"></i>
+                                                                    <span> 有3个来自人事部的消息</span>
+                                                                </div>
+                                                                <div class="tpl-dropdown-menu-notifications-time">
+                                                                    30分钟前
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li class="tpl-dropdown-menu-notifications">
+                                                            <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
+                                                                <div class="tpl-dropdown-menu-notifications-title">
+                                                                    <i class="am-icon-folder-o"></i>
+                                                                    <span> 上午开会记录存档</span>
+                                                                </div>
+                                                                <div class="tpl-dropdown-menu-notifications-time">
+                                                                    1天前
+                                                                </div>
+                                                            </a>
+                                                        </li>-->
+                            <li class="tpl-dropdown-menu-notifications">
+                                <a href="{:url('index/consume')}" class="tpl-dropdown-menu-notifications-item am-cf">
+                                    <i class="am-icon-bell"></i> 进入列表…
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- 退出 -->
+                    <li class="am-text-sm">
+                        <a href="/index.php/admin/index/logout">
+                            <span class="am-icon-sign-out"></span> 退出
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </header>
+    <!-- 风格切换 -->
+    <div class="tpl-skiner">
+        <div class="tpl-skiner-toggle am-icon-cog">
+        </div>
+        <div class="tpl-skiner-content">
+            <div class="tpl-skiner-content-title">
+                选择主题
+            </div>
+            <div class="tpl-skiner-content-bar">
+                <span class="skiner-color skiner-white" data-color="theme-white"></span>
+                <span class="skiner-color skiner-black" data-color="theme-black"></span>
+            </div>
+        </div>
+    </div>
+    <!-- 侧边导航栏 -->
+    <div class="left-sidebar">
+        <!-- 用户信息 -->
+        <div class="tpl-sidebar-user-panel">
+            <div class="tpl-user-panel-slide-toggleable">
+                <div class="tpl-user-panel-profile-picture">
+                    <img src="http://jianengzhiye.qiuyunxin.com/static/assets/img/user04.png" alt="">
+                </div>
+                <span class="user-panel-logged-in-text">
+              <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
+              佳能纸业
+          </span>
+                <!--<a href="javascript:;" class="tpl-user-panel-action-link"> <span class="am-icon-pencil"></span> 账号设置</a>-->
+            </div>
+        </div>
+
+        <!-- 菜单 -->
+        <ul class="sidebar-nav">
+            <li class="sidebar-nav-heading">Components <span class="sidebar-nav-heading-info"> 控制面板</span></li>
+            <li class="sidebar-nav-link">
+                <a href="{:url('index/index')}">
+                    <i class="am-icon-home sidebar-nav-link-logo"></i> 首页
+                </a>
+            </li>
+            <li class="sidebar-nav-link">
+                <a href="{:url('index/category')}" class="active">
+                    <i class="am-icon-table sidebar-nav-link-logo"></i> 分类
+                </a>
+            </li>
+            <li class="sidebar-nav-link">
+                <a href="{:url('index/promotion')}">
+                    <i class="am-icon-chain sidebar-nav-link-logo"></i> 促销
+                </a>
+            </li>
+            <li class="sidebar-nav-link">
+                <a href="{:url('index/product')}">
+                    <i class="am-icon-calendar sidebar-nav-link-logo"></i> 产品
+                </a>
+            </li>
+            <li class="sidebar-nav-link">
+                <a href="{:url('index/consume')}">
+                    <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 账单
+                </a>
+            </li>
+            <li class="sidebar-nav-link">
+                <a href="{:url('index/bill')}">
+                    <i class="am-icon-bar-chart sidebar-nav-link-logo"></i> 图表
+                </a>
+            </li>
+            <li class="sidebar-nav-link">
+                <a href="{:url('index/membership')}">
+                    <i class="am-icon-clone sidebar-nav-link-logo"></i> 会员
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 内容区域 -->
+    <div class="tpl-content-wrapper">
+
+        <div class="container-fluid am-cf">
+            <div class="row">
+                <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
+                    <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 分类 <small>佳能纸业</small></div>
+                    {if condition="$info.id eq ''"}
+                    <p class="page-header-description">这里可以添加新的分类</p>
+                    {else/}<p class="page-header-description">这里编辑分类</p>
+                    {/if}
+                </div>
+                <!--<div class="am-u-lg-3 tpl-index-settings-button">-->
+                <!--<button type="button" class="page-header-button"><span class="am-icon-paint-brush"></span> 设置</button>-->
+                <!--</div>-->
+            </div>
+
+        </div>
+
+        <div class="row-content am-cf">
+
+
+            <div class="row">
+
+                <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                    <div class="widget am-cf">
+                        <div class="widget-head am-cf">
+                            <div class="widget-title am-fl">类目管理</div>
+                            <!--<div class="widget-function am-fr">-->
+                                <!--<a href="javascript:;" class="am-icon-cog"></a>-->
+                            <!--</div>-->
+                        </div>
+                        <div class="widget-body am-fr">
+
+                            <form class="am-form tpl-form-line-form" action="{:url('index/cate_update')}" onkeydown="if(event.keyCode==13){return false;}">
+                                <input type="hidden" name="id" value="{$info.id}">
+                                <div class="am-form-group">
+                                    <label for="user-name" class="am-u-sm-3 am-form-label">类目 <span class="tpl-form-line-small-title">Title</span></label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" name="cate_name" value="{$info.cate_name}" placeholder="请输入类目名字">
+                                        <small>Please enter cate name</small>
+                                    </div>
+                                </div>
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">缩略图 <span class="tpl-form-line-small-title">Image</span></label>
+                                    <div class="am-u-sm-9">
+                                        {if condition="$img_list neq ''"}
+                                            {volist name="$img_list" id="vo"}
+                                                <img rel="{$vo.id}" src="{$vo.img}" style="width: 100px; height: 100px">
+                                                <input rel="{$vo.id}" name="old_img[]" type="hidden" value="{$vo.name}">
+                                                <a rel="{$vo.id}" onclick="delete_img('{$vo.id}')" href="javascript:;">删除</a>
+                                            {/volist}
+                                        {/if}
+                                        <div id="uploader" class="wu-example">
+                                            <!--用来存放item-->
+                                            <div id="fileList" class="uploader-list"></div>
+                                            <div class="btns">
+                                                <div id="filePicker">选择图片</div>
+                                                <!--<button id="ctlBtn" class="am-btn am-btn-primary tpl-btn-bg-color-success">开始上传</button>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input name="image" id="image" type="hidden">
+                                </div>
+
+                                <div class="am-form-group">
+                                    <div class="am-u-sm-9 am-u-sm-push-3">
+                                        <input type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success " value="提交">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="http://jianengzhiye.qiuyunxin.com/static/assets/js/amazeui.min.js"></script>
+<script src="http://jianengzhiye.qiuyunxin.com/static/assets/js/amazeui.datatables.min.js"></script>
+<script src="http://jianengzhiye.qiuyunxin.com/static/assets/js/dataTables.responsive.min.js"></script>
+<script src="http://jianengzhiye.qiuyunxin.com/static/assets/js/app.js"></script>
+<script src="http://jianengzhiye.qiuyunxin.com/static/assets/js/notify.js?version=2018"></script>
+<script type="text/javascript">
+    var $list = $("#fileList");
+    // var $btn = $("#ctlBtn");
+    // var state = "pending";
+    var thumbnailWidth = 100;   //缩略图高度和宽度 （单位是像素），当宽高度是0~1的时候，是按照百分比计算，具体可以看api文档
+    var thumbnailHeight = 100;
+    // $btn = $("#btn-star"),
+    // state = "pending",
+    // uploader;
+    var uploader = WebUploader.create({
+        auto: true,
+        swf: 'http://jianengzhiye.qiuyunxin.com/static/webuploader/0.1.5/Uploader.swf',
+
+        // 文件接收服务端。
+        server: '{:url("index/image_process")}',
+
+        // 选择文件的按钮。可选。
+        // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+        pick: '#filePicker',
+
+        // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+        resize: false,
+        // 只允许选择图片文件。
+        accept: {
+            title: 'Images',
+            extensions: 'gif,jpg,jpeg,bmp,png',
+            mimeTypes: 'image/*'
+        }
+    });
+    // 当有文件添加进来的时候
+    uploader.on( 'fileQueued', function( file ) {
+        var $li = $(
+            '<div id="' + file.id + '" class="file-item thumbnail">' +
+            '<img>' +
+            // '<p class="state">等待上传...</p>'+
+            '</div>'
+            ),
+            $img = $li.find('img');
+
+
+        // $list为容器jQuery实例
+        $list.append( $li );
+
+        // 创建缩略图
+        // 如果为非图片文件，可以不用调用此方法。
+        // thumbnailWidth x thumbnailHeight 为 100 x 100
+        uploader.makeThumb( file, function( error, src ) {
+            if ( error ) {
+                $img.replaceWith('<span>不能预览</span>');
+                return;
+            }
+
+            $img.attr( 'src', src );
+        }, thumbnailWidth, thumbnailHeight );
+    });
+    // 文件上传过程中创建进度条实时显示。
+    uploader.on( 'uploadProgress', function( file, percentage ) {
+        var $li = $( '#'+file.id ),
+            $percent = $li.find('.progress span');
+
+        // 避免重复创建
+        if ( !$percent.length ) {
+            $percent = $('<p class="progress"><span></span></p>')
+                .appendTo( $li )
+                .find('span');
+        }
+
+        $percent.css( 'width', percentage * 100 + '%' );
+    });
+
+    // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+    uploader.on( 'uploadSuccess', function(file,response) {
+        $( '#'+file.id ).addClass('upload-state-done');
+        document.getElementById("image").value += response.name+',';
+        // console.log($('#image').val());
+    });
+
+    // 文件上传失败，显示上传出错。
+    uploader.on( 'uploadError', function(file) {
+        var $li = $( '#'+file.id ),
+            $error = $li.find('div.error');
+
+        // 避免重复创建
+        if ( !$error.length ) {
+            $error = $('<div class="error"></div>').appendTo( $li );
+        }
+
+        $error.text('上传失败');
+    });
+
+    // uploader.on('all', function (type) {
+    //     if (type === 'startUpload') {
+    //         state = 'uploading';
+    //     } else if (type === 'stopUpload') {
+    //         state = 'paused';
+    //     } else if (type === 'uploadFinished') {
+    //         state = 'done';
+    //     }
+    //
+    //     if (state === 'uploading') {
+    //         $btn.text('暂停上传');
+    //     } else {
+    //         $btn.text('开始上传');
+    //     }
+    // });
+
+    // 完成上传完了，成功或者失败，先删除进度条。
+    uploader.on( 'uploadComplete', function( file ) {
+        $( '#'+file.id ).find('.progress').remove();
+    });
+    // $btn.on('click', function () {
+    //     if (state === 'uploading') {
+    //         uploader.stop();
+    //     } else {
+    //         uploader.upload();
+    //     }
+    // });
+
+    //删除旧照片
+    function delete_img(data) {
+        $("a[rel^="+data+"]").remove();
+        $("input[rel^="+data+"]").remove();
+        $("img[rel^="+data+"]").remove();
+    }
+</script>
+
+</body>
+
+</html>

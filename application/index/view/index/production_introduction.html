@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>商品页面</title>
+    <link rel="icon" type="image/png" href="http://jianengzhiye.qiuyunxin.com/static/assets/i/favicon.png">
+    <link href="http://jianengzhiye.qiuyunxin.com/static/home/assets/css/admin.css" rel="stylesheet" type="text/css" />
+    <link href="http://jianengzhiye.qiuyunxin.com/static/home/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
+    <link href="http://jianengzhiye.qiuyunxin.com/static/home/basic/css/demo.css" rel="stylesheet" type="text/css" />
+    <link type="text/css" href="http://jianengzhiye.qiuyunxin.com/static/home/css/optstyle.css" rel="stylesheet" />
+    <link type="text/css" href="http://jianengzhiye.qiuyunxin.com/static/home/css/style.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="http://jianengzhiye.qiuyunxin.com/static/home/basic/js/jquery-1.7.min.js"></script>
+    <script type="text/javascript" src="http://jianengzhiye.qiuyunxin.com/static/home/basic/js/quick_links.js"></script>
+
+    <script type="text/javascript" src="http://jianengzhiye.qiuyunxin.com/static/home/assets/js/amazeui.js"></script>
+    <script type="text/javascript" src="http://jianengzhiye.qiuyunxin.com/static/home/js/jquery.imagezoom.min.js"></script>
+    <script type="text/javascript" src="http://jianengzhiye.qiuyunxin.com/static/home/js/jquery.flexslider.js"></script>
+    <script type="text/javascript" src="http://jianengzhiye.qiuyunxin.com/static/home/js/list.js"></script>
+
+</head>
+
+<body>
+
+
+<!--顶部导航条 -->
+<div class="am-container header">
+    <ul class="message-l">
+        <div class="topMessage">
+            <div class="menu-hd">
+                {if condition="$user eq null"}
+                <a href="{:url('index/index/login')}" target="_top" class="h">亲，请登录</a> |
+                <a href="{:url('index/index/register')}" target="_top">免费注册</a>
+                {else/}
+                <a>欢迎光临,<span style="color: red">{$user}</span></a>
+                <a href="{:url('index/index/logout')}">退出</a>
+                {/if}
+            </div>
+        </div>
+    </ul>
+</div>
+
+<!--悬浮搜索框-->
+
+<div class="nav white">
+
+    <div class="logoBig">
+
+    </div>
+    <div class="search-bar pr">
+        <a name="index_none_header_sysc" href="#"></a>
+        <form action="{:url('index/index/search_goods')}" method="post">
+            <input name="order" type="hidden" value="purchase">
+            <input id="searchInput" name="goods_name" type="text" placeholder="搜索" autocomplete="off">
+            <input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
+        </form>
+    </div>
+</div>
+
+<div class="clear"></div>
+<b class="line"></b>
+<div class="listMain">
+
+    <!--分类-->
+    <div class="nav-table">
+        <div class="long-title"><span class="all-goods">全部分类</span></div>
+        <div class="nav-cont">
+            <ul>
+                <li class="index"><a onclick="navigate('index')" href="javascript:;">首页</a></li>
+            </ul>
+        </div>
+    </div>
+    <ol class="am-breadcrumb am-breadcrumb-slash">
+        <li><a onclick="navigate('index')" href="javascript:;">首页</a></li>
+        <li><a href="{:url('cate_index')}">分类</a></li>
+        <li class="am-active">内容</li>
+    </ol>
+    <script type="text/javascript">
+        $(function() {});
+        $(window).load(function() {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                start: function(slider) {
+                    $('body').removeClass('loading');
+                }
+            });
+        });
+    </script>
+    <div class="scoll">
+        <section class="slider">
+            <div class="flexslider">
+                <ul class="slides">
+                    {volist name="image" id="vo"}
+                        <li>
+                            <img src="{$vo}" title="pic" />
+                        </li>
+                    {/volist}
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <!--放大镜-->
+
+    <div class="item-inform">
+        <div class="clearfixLeft" id="clearcontent">
+
+            <div class="box">
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        $(".jqzoom").imagezoom();
+                        $("#thumblist li a").click(function() {
+                            $(this).parents("li").addClass("tb-selected").siblings().removeClass("tb-selected");
+                            $(".jqzoom").attr('src', $(this).find("img").attr("mid"));
+                            $(".jqzoom").attr('rel', $(this).find("img").attr("big"));
+                        });
+                    });
+                </script>
+
+                <div class="tb-booth tb-pic tb-s310">
+                    {volist name="image" id="vo" length="1"}
+                        <a href="{$vo}">
+                            <img src="{$vo}" alt="细节展示放大镜特效" rel="{$vo}" class="jqzoom" />
+                        </a>
+                    {/volist}
+                </div>
+                <ul class="tb-thumb" id="thumblist">
+                    {volist name="image" id="vo"}
+                        <li class="tb-selected">
+                            <div class="tb-pic tb-s40">
+                                <a href="#"><img src="{$vo}" mid="{$vo}" big="{$vo}"></a>
+                            </div>
+                        </li>
+                    {/volist}
+                </ul>
+            </div>
+
+            <div class="clear"></div>
+        </div>
+
+        <div class="clearfixRight">
+
+            <!--规格属性-->
+            <!--名称-->
+            <div class="tb-detail-hd">
+                <h1>
+                    {$goods.goods_name}
+                </h1>
+            </div>
+            <div class="tb-detail-list">
+                <!--价格-->
+                <div class="tb-detail-price">
+                    <li class="price iteminfo_price">
+                        <dt>价格</dt>
+                        <dd><em>¥</em><b class="sys_item_price">{$goods.retail_price}</b>  </dd>
+                    </li>
+                    <!--<li class="price iteminfo_mktprice">-->
+                        <!--<dt>原价</dt>-->
+                        <!--<dd><em>¥</em><b class="sys_item_mktprice">98.00</b></dd>-->
+                    <!--</li>-->
+                    <div class="clear"></div>
+                </div>
+
+                <div class="clear"></div>
+
+                <!--销量-->
+                <ul class="tm-ind-panel">
+                    <!--<li class="tm-ind-item tm-ind-sellCount canClick">-->
+                        <!--<div class="tm-indcon"><span class="tm-label">月销量</span><span class="tm-count">1015</span></div>-->
+                    <!--</li>-->
+                    <li class="tm-ind-item tm-ind-sumCount canClick">
+                        <div class="tm-indcon"><span class="tm-label">累计销量</span><span class="tm-count">{$goods.purchase}</span></div>
+                    </li>
+                </ul>
+                <div class="clear"></div>
+
+                <!--各种规格-->
+                <dl class="iteminfo_parameter sys_item_specpara">
+                    <dd>
+                        <!--操作页面-->
+
+                        <div class="theme-popover-mask"></div>
+
+                        <div class="theme-popover">
+                            <div class="theme-span"></div>
+                            <div class="theme-poptit">
+                                <a href="javascript:;" title="关闭" class="close">×</a>
+                            </div>
+                            <div class="theme-popbod dform">
+                                <form class="theme-signin" name="loginform" action="" method="post">
+
+                                    <div class="theme-signin-left">
+                                        <div class="theme-options">
+                                            <div class="cart-title number">数量</div>
+                    <dd>
+                        <input id="min" class="am-btn am-btn-default" name="" type="button" value="-" />
+                        <input id="text_box" name="" type="text" value="1" style="width:30px;" />
+                        <input id="add" class="am-btn am-btn-default" name="" type="button" value="+" />
+                        <span id="Stock" class="tb-hidden">库存<span class="stock">{$goods.stock}</span>件</span>
+                    </dd>
+            </div>
+            <div class="clear"></div>
+
+            <div class="btn-op">
+                <div class="btn am-btn am-btn-warning">确认</div>
+                <div class="btn close am-btn am-btn-warning">取消</div>
+            </div>
+        </div>
+
+        </form>
+    </div>
+</div>
+
+</dd></dl>
+
+<div class="clear"></div>
+<!--活动	-->
+</div>
+
+<div class="pay">
+    <div class="pay-opt">
+        <a onclick="navigate('index')" href="javascript:;"><span class="am-icon-home am-icon-fw">首页</span></a>
+        <!-- -->
+
+    </div>
+    <li>
+        <div class="clearfix tb-btn tb-btn-buy theme-login">
+            <a id="LikBuy" title="点此按钮到下一步确认购买信息" href="#">立即购买</a>
+        </div>
+    </li>
+    <li>
+        <div class="clearfix tb-btn tb-btn-basket theme-login">
+            <a id="LikBasket" title="加入购物车" href="#"><i></i>加入购物车</a>
+        </div>
+    </li>
+</div>
+
+</div>
+
+<div class="clear"></div>
+
+</div>
+
+<!--优惠套装-->
+<div class="match">
+    <div class="match-title"></div>
+
+</div>
+<div class="clear"></div>
+
+
+<!-- introduce-->
+
+<div class="introduce">
+    <div class="browse">
+
+    </div>
+    <div class="introduceMain">
+        <div class="am-tabs" data-am-tabs>
+            <ul class="am-avg-sm-3 am-tabs-nav am-nav am-nav-tabs">
+                <li class="am-active">
+                    <a href="#">
+
+                        <span class="index-needs-dt-txt">宝贝详情</span></a>
+
+                </li>
+
+                <!--<li>-->
+                    <!--<a href="#">-->
+
+                        <!--<span class="index-needs-dt-txt">全部评价</span></a>-->
+
+                <!--</li>-->
+
+                <!--<li>-->
+                    <!--<a href="#">-->
+
+                        <!--<span class="index-needs-dt-txt">猜你喜欢</span></a>-->
+                <!--</li>-->
+            </ul>
+
+            <div class="am-tabs-bd">
+
+                <div class="am-tab-panel am-fade am-in am-active">
+                    <div class="J_Brand">
+
+                        <div class="attr-list-hd tm-clear">
+                            <h4>产品说明：</h4></div>
+                        <div class="clear"></div>
+                        <ul id="J_AttrUL">
+                            {$goods.introduction}
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="details">
+                        <div class="attr-list-hd after-market-hd">
+                            <h4>商品细节</h4>
+                        </div>
+                        <div class="twlistNews">
+                            {volist name="image" id="vo"}
+                                <img src="{$vo}" />
+                            {/volist}
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="clear"></div>
+
+        <div class="footer">
+            <div class="footer-hd">
+
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<script>
+    function navigate(url){
+        var form1 = document.createElement("form");
+        form1.id = "form1";
+        form1.name = "form1";
+        document.body.appendChild(form1);
+        var input1 = document.createElement("input");
+        input1.type = "hidden";
+        input1.name = "mode";
+        input1.value = "other";
+        form1.appendChild(input1);
+        form1.method = "post";
+        form1.action = url;
+        form1.submit();
+        document.body.removeChild(form1);
+    };
+</script>
+</body>
+
+</html>

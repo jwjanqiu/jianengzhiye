@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>分类管理</title>
+    <meta name="description" content="这是一个 index 页面">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="http://jianengzhiye.qiuyunxin.com/static/assets/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="http://jianengzhiye.qiuyunxin.com/static/assets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <script src="http://jianengzhiye.qiuyunxin.com/static/assets/js/echarts.min.js"></script>
+    <link rel="stylesheet" href="http://jianengzhiye.qiuyunxin.com/static/assets/css/amazeui.min.css" />
+    <link rel="stylesheet" href="http://jianengzhiye.qiuyunxin.com/static/assets/css/amazeui.datatables.min.css" />
+    <link rel="stylesheet" href="http://jianengzhiye.qiuyunxin.com/static/assets/css/app.css">
+    <script src="http://jianengzhiye.qiuyunxin.com/static/assets/js/jquery.min.js"></script>
+    <script src="http://jianengzhiye.qiuyunxin.com/static/layer/2.4/layer.js"></script>
+
+</head>
+
+<body data-type="widgets">
+<script src="http://jianengzhiye.qiuyunxin.com/static/assets/js/theme.js"></script>
+<div class="am-g tpl-g">
+    <!-- 头部 -->
+    <header>
+        <!-- logo -->
+        <div class="am-fl tpl-header-logo">
+            <a href="javascript:;"><img src="http://jianengzhiye.qiuyunxin.com/static/assets/img/logo.png" alt=""></a>
+        </div>
+        <!-- 右侧内容 -->
+        <div class="tpl-header-fluid">
+            <!-- 侧边切换 -->
+            <div class="am-fl tpl-header-switch-button am-icon-list">
+                    <span>
+
+                </span>
+            </div>
+            <!-- 搜索 -->
+            <div class="am-fl tpl-header-search">
+                <!--<form class="tpl-header-search-form" action="javascript:;">-->
+                <!--<button class="tpl-header-search-btn am-icon-search"></button>-->
+                <!--<input class="tpl-header-search-box" type="text" placeholder="搜索内容...">-->
+                <!--</form>-->
+            </div>
+            <!-- 其它功能-->
+            <div class="am-fr tpl-header-navbar">
+                <ul>
+                    <!-- 欢迎语 -->
+                    <li class="am-text-sm tpl-header-navbar-welcome">
+                        <a href="javascript:;">欢迎你, <span>{$username}</span> </a>
+                    </li>
+
+                    <!-- 新邮件 -->
+                    <!--                    <li class="am-dropdown tpl-dropdown" data-am-dropdown>
+                                            <a href="javascript:;" class="am-dropdown-toggle tpl-dropdown-toggle" data-am-dropdown-toggle>
+                                                <i class="am-icon-envelope"></i>
+                                                <span class="am-badge am-badge-success am-round item-feed-badge">4</span>
+                                            </a>
+                                            &lt;!&ndash; 弹出列表 &ndash;&gt;
+                                            <ul class="am-dropdown-content tpl-dropdown-content">
+                                                <li class="tpl-dropdown-menu-messages">
+                                                    <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
+                                                        <div class="menu-messages-ico">
+                                                            <img src="http://jianengzhiye.qiuyunxin.com/static/assets/img/user04.png" alt="">
+                                                        </div>
+                                                        <div class="menu-messages-time">
+                                                            3小时前
+                                                        </div>
+                                                        <div class="menu-messages-content">
+                                                            <div class="menu-messages-content-title">
+                                                                <i class="am-icon-circle-o am-text-success"></i>
+                                                                <span>夕风色</span>
+                                                            </div>
+                                                            <div class="am-text-truncate"> Amaze UI 的诞生，依托于 GitHub 及其他技术社区上一些优秀的资源；Amaze UI 的成长，则离不开用户的支持。 </div>
+                                                            <div class="menu-messages-content-time">2016-09-21 下午 16:40</div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+
+                                                <li class="tpl-dropdown-menu-messages">
+                                                    <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
+                                                        <div class="menu-messages-ico">
+                                                            <img src="http://jianengzhiye.qiuyunxin.com/static/assets/img/user02.png" alt="">
+                                                        </div>
+                                                        <div class="menu-messages-time">
+                                                            5天前
+                                                        </div>
+                                                        <div class="menu-messages-content">
+                                                            <div class="menu-messages-content-title">
+                                                                <i class="am-icon-circle-o am-text-warning"></i>
+                                                                <span>佳能纸业</span>
+                                                            </div>
+                                                            <div class="am-text-truncate"> 为了能最准确的传达所描述的问题， 建议你在反馈时附上演示，方便我们理解。 </div>
+                                                            <div class="menu-messages-content-time">2016-09-16 上午 09:23</div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li class="tpl-dropdown-menu-messages">
+                                                    <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
+                                                        <i class="am-icon-circle-o"></i> 进入列表…
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>-->
+
+                    <!-- 新提示 -->
+                    <li class="am-dropdown" data-am-dropdown>
+                        <a href="javascript:;" class="am-dropdown-toggle" data-am-dropdown-toggle>
+                            <i class="am-icon-bell"></i>
+                            <span id="remind" class="am-badge am-badge-warning am-round item-feed-badge"></span>
+                        </a>
+                        <audio id="mp3"src="http://jianengzhiye.qiuyunxin.com/static/assets/img/552857.mp3"></audio>
+                        <!-- 弹出列表 -->
+                        <ul class="am-dropdown-content tpl-dropdown-content">
+                            <!--                            <li class="tpl-dropdown-menu-notifications">
+                                                            <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
+                                                                <div class="tpl-dropdown-menu-notifications-title">
+                                                                    <i class="am-icon-line-chart"></i>
+                                                                    <span> 有6笔新的销售订单</span>
+                                                                </div>
+                                                                <div class="tpl-dropdown-menu-notifications-time">
+                                                                    12分钟前
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li class="tpl-dropdown-menu-notifications">
+                                                            <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
+                                                                <div class="tpl-dropdown-menu-notifications-title">
+                                                                    <i class="am-icon-star"></i>
+                                                                    <span> 有3个来自人事部的消息</span>
+                                                                </div>
+                                                                <div class="tpl-dropdown-menu-notifications-time">
+                                                                    30分钟前
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li class="tpl-dropdown-menu-notifications">
+                                                            <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
+                                                                <div class="tpl-dropdown-menu-notifications-title">
+                                                                    <i class="am-icon-folder-o"></i>
+                                                                    <span> 上午开会记录存档</span>
+                                                                </div>
+                                                                <div class="tpl-dropdown-menu-notifications-time">
+                                                                    1天前
+                                                                </div>
+                                                            </a>
+                                                        </li>-->
+                            <li class="tpl-dropdown-menu-notifications">
+                                <a href="{:url('index/consume')}" class="tpl-dropdown-menu-notifications-item am-cf">
+                                    <i class="am-icon-bell"></i> 进入列表…
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- 退出 -->
+                    <li class="am-text-sm">
+                        <a href="/index.php/admin/index/logout">
+                            <span class="am-icon-sign-out"></span> 退出
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </header>
+    <!-- 风格切换 -->
+    <div class="tpl-skiner">
+        <div class="tpl-skiner-toggle am-icon-cog">
+        </div>
+        <div class="tpl-skiner-content">
+            <div class="tpl-skiner-content-title">
+                选择主题
+            </div>
+            <div class="tpl-skiner-content-bar">
+                <span class="skiner-color skiner-white" data-color="theme-white"></span>
+                <span class="skiner-color skiner-black" data-color="theme-black"></span>
+            </div>
+        </div>
+    </div>
+    <!-- 侧边导航栏 -->
+    <div class="left-sidebar">
+        <!-- 用户信息 -->
+        <div class="tpl-sidebar-user-panel">
+            <div class="tpl-user-panel-slide-toggleable">
+                <div class="tpl-user-panel-profile-picture">
+                    <img src="http://jianengzhiye.qiuyunxin.com/static/assets/img/user04.png" alt="">
+                </div>
+                <span class="user-panel-logged-in-text">
+              <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
+              佳能纸业
+          </span>
+                <!--<a href="javascript:;" class="tpl-user-panel-action-link"> <span class="am-icon-pencil"></span> 账号设置</a>-->
+            </div>
+        </div>
+
+        <!-- 菜单 -->
+        <ul class="sidebar-nav">
+            <li class="sidebar-nav-heading">Components <span class="sidebar-nav-heading-info"> 控制面板</span></li>
+            <li class="sidebar-nav-link">
+                <a href="{:url('index/index')}" >
+                    <i class="am-icon-home sidebar-nav-link-logo"></i> 首页
+                </a>
+            </li>
+            <li class="sidebar-nav-link">
+                <a href="{:url('index/category')}">
+                    <i class="am-icon-table sidebar-nav-link-logo"></i> 分类
+                </a>
+            </li>
+            <li class="sidebar-nav-link">
+                <a href="{:url('index/promotion')}">
+                    <i class="am-icon-chain sidebar-nav-link-logo"></i> 促销
+                </a>
+            </li>
+            <li class="sidebar-nav-link">
+                <a href="{:url('index/product')}">
+                    <i class="am-icon-calendar sidebar-nav-link-logo"></i> 产品
+                </a>
+            </li>
+            <li class="sidebar-nav-link">
+                <a href="{:url('index/consume')}" class="active">
+                    <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 账单
+                </a>
+            </li>
+            <li class="sidebar-nav-link">
+                <a href="{:url('index/bill')}">
+                    <i class="am-icon-bar-chart sidebar-nav-link-logo"></i> 图表
+                </a>
+            </li>
+            <li class="sidebar-nav-link">
+                <a href="{:url('index/membership')}">
+                    <i class="am-icon-clone sidebar-nav-link-logo"></i> 会员
+                </a>
+            </li>
+        </ul>
+    </div>
+
+
+    <!-- 内容区域 -->
+    <div class="tpl-content-wrapper">
+        <div class="row-content am-cf">
+            <div class="row">
+                <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                    <div class="widget am-cf">
+                        <div class="widget-head am-cf">
+                            <div class="widget-title  am-cf">消费记录</div>
+                        </div>
+                        <div class="widget-body  am-fr">
+
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
+                                <div class="am-form-group">
+                                    <div class="am-btn-toolbar">
+                                        <div class="am-btn-group am-btn-group-xs">
+                                            <!--<a type="button" href="{:url('index/category_add')}" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 新增</a>-->
+                                            <!--<a type="button" onclick="datadel()" class="am-btn am-btn-default am-btn-danger"><span class="am-icon-trash-o"></span> 批量删除</a>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
+                                <div class="am-form-group tpl-table-list-select">
+
+                                </div>
+                            </div>
+                            <form action="{:url('index/consume_search')}" enctype="multipart/form-data" name="search_form" method="post">
+                                <div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
+                                    <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
+                                        <input type="text" name="search_field" class="am-form-field " placeholder="输入订单号或名字或手机号">
+                                        <span class="am-input-group-btn">
+                                            <button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search" type="submit"></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <div class="am-u-sm-12">
+                                <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r">
+                                    <thead>
+                                    <tr>
+                                        <th>订单号</th>
+                                        <th>姓名</th>
+                                        <th>商品</th>
+                                        <th>总价</th>
+                                        <th>地址</th>
+                                        <th>电话</th>
+                                        <th>状态</th>
+                                        <th>创建时间</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {volist name="list" id="value"}
+                                    <tr class="gradeX">
+                                        <td>{$value.order_id}</td>
+                                        <td>{$value.name}</td>
+                                        <td>{$value.goods}</td>
+                                        <td>{$value.total_price}</td>
+                                        <td>{$value.address}</td>
+                                        <td>{$value.phone}</td>
+                                        <td>{$value.isconfirm}</td>
+                                        <td>{$value.create_time}</td>
+                                        <td>
+                                            <div class="tpl-table-black-operation">
+                                                {if condition="$value.isconfirm eq '待确认'"}
+                                                    <a class="tpl-table-black-operation-del" onclick="isconfirm(this,'{$value.id}',1)" href="javascript:;">
+                                                        <i class="am-icon-pencil"></i> 确认接单
+                                                    </a>
+                                                    <a class="tpl-table-black-operation-del" onclick="isconfirm(this,'{$value.id}',-1)" href="javascript:;">
+                                                        <i class="am-icon-pencil"></i> 取消接单
+                                                    </a>
+                                                {elseif condition="$value.isconfirm eq '已接单'"/}
+                                                    <a class="tpl-table-black-operation-del" onclick="isconfirm(this,'{$value.id}',2)" href="javascript:;">
+                                                        <i class="am-icon-pencil"></i> 确认完成
+                                                    </a>
+                                                    <a class="tpl-table-black-operation-del" onclick="isconfirm(this,'{$value.id}',-1)" href="javascript:;">
+                                                        <i class="am-icon-pencil"></i> 取消接单
+                                                    </a>
+                                                {/if}
+                                                <a class="tpl-table-black-operation-del" href="consume_info?id={$value.id}">
+                                                    <i class="am-icon-pencil"></i> 详情
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {/volist}
+                                    <!-- more data -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="am-u-lg-12 am-cf">
+                                <div class="am-fr">
+                                    <ul class="am-pagination tpl-pagination">
+                                        <li>
+                                            {$list->render()}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="http://jianengzhiye.qiuyunxin.com/static/assets/js/amazeui.min.js"></script>
+<script src="http://jianengzhiye.qiuyunxin.com/static/assets/js/amazeui.datatables.min.js"></script>
+<script src="http://jianengzhiye.qiuyunxin.com/static/assets/js/dataTables.responsive.min.js"></script>
+<script src="http://jianengzhiye.qiuyunxin.com/static/assets/js/app.js"></script>
+<script src="http://jianengzhiye.qiuyunxin.com/static/assets/js/notify.js?version=2018"></script>
+
+<script>
+    /*提货-确认*/
+    function isconfirm(obj,id,code){
+        if(code == 1){
+            layer.confirm('确认接单吗？',function(index){
+                $.ajax({
+                    type: 'POST',
+                    url: '/admin/index/consume_confirm?id='+id+'&code='+code,
+                    success: function(data){
+                        setTimeout("location.href = window.location.href;",1000);
+                        layer.msg('已接单!',{icon:1,time:1000});
+                    },
+                    error:function(data) {
+                        layer.msg('失败!',{icon:1,time:1000});
+                        console.log(data.msg);
+                    },
+                });
+            });
+        }else if(code == 2){
+            layer.confirm('确认完成吗？',function(index){
+                $.ajax({
+                    type: 'POST',
+                    url: '/admin/index/consume_confirm?id='+id+'&code='+code,
+                    success: function(data){
+                        setTimeout("location.href = window.location.href;",1000);
+                        layer.msg('已完成!',{icon:1,time:1000});
+                    },
+                    error:function(data) {
+                        layer.msg('失败!',{icon:1,time:1000});
+                        console.log(data.msg);
+                    },
+                });
+            });
+        }else if(code == -1){
+            layer.confirm('确认取消吗？',function(index){
+                $.ajax({
+                    type: 'POST',
+                    url: '/admin/index/consume_confirm?id='+id+'&code='+code,
+                    success: function(data){
+                        setTimeout("location.href = window.location.href;",1000);
+                        layer.msg('已取消!',{icon:1,time:1000});
+                    },
+                    error:function(data) {
+                        layer.msg('失败!',{icon:1,time:1000});
+                        console.log(data.msg);
+                    },
+                });
+            });
+        }
+    }
+</script>
+</body>
+</html>
