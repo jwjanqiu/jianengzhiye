@@ -335,14 +335,20 @@
                 <div class="am-u-sm-12 am-u-md-4">
                     <div class="widget am-cf">
                         <div class="widget-head am-cf">
-                            <div class="widget-title am-fl">专用服务器信息</div>
+                            <div class="widget-title am-fl">小程序设置</div>
 <!--                            <div class="widget-function am-fr">
                                 &lt;!&ndash;<a href="javascript:;" class="am-icon-cog"></a>&ndash;&gt;
                             </div>-->
                         </div>
                         <div class="widget-body widget-body-md am-fr">
 
-                            <div class="am-progress-title">Operation_System <span class="am-fr am-progress-title-more">{$serverInfo.Operation_System}</span></div>
+                            <div class="am-progress-title">banner设置
+                                <span class="am-fr am-progress-title-more">
+                                    <a onclick="wxSettings('banner设置','{:url(\'WxApp/bannerSettings\')}')">
+                                        <i class="am-icon-industry sidebar-nav-link-logo"></i>
+                                    </a>
+                                </span>
+                            </div>
 
                             <div class="am-progress-title">Runtime_environment <span class="am-fr am-progress-title-more">{$serverInfo.Runtime_environment}</span></div>
 
@@ -430,6 +436,7 @@
     </div>
 </div>
 </div>
+<script src="../../static/layer/2.4/layer.js"></script>
 <script src="../../static/assets/js/amazeui.min.js"></script>
 <script src="../../static/assets/js/amazeui.datatables.min.js"></script>
 <script src="../../static/assets/js/dataTables.responsive.min.js"></script>
@@ -457,6 +464,17 @@
             });
         });
     });
+    function wxSettings(title,url) {
+        layer.open({
+            type: 2, //类型，解析url
+            closeBtn: 1, //关闭按钮是否显示 1显示0不显示
+            title: title, //页面标题
+            shadeClose: true, //点击遮罩区域是否关闭页面
+            shade: 0.8,  //遮罩透明度
+            area: ['1200px', '800px'],  //弹出层页面比例
+            content: url  //弹出层的url
+        });
+    }
 </script>
 </body>
 
