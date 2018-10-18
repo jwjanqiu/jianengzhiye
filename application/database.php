@@ -19,7 +19,7 @@ return [
     // 用户名
     'username'        => 'jwjanqiu',
     // 密码
-    'password'        => 'nag443alec717df',
+    'password'        => 'nag443alec717',
     // 端口
     'hostport'        => '3306',
     // 连接dsn
