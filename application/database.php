@@ -17,9 +17,9 @@ return [
     // 数据库名
     'database'        => 'jia_neng_zhi_ye',
     // 用户名
-    'username'        => 'root',
+    'username'        => 'jwjanqiu',
     // 密码
-    'password'        => '7ba1b3303d1f1a79',
+    'password'        => 'nag443alec717',
     // 端口
     'hostport'        => '3306',
     // 连接dsn

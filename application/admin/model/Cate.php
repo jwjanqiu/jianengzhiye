@@ -19,7 +19,7 @@ class Cate extends Model
      */
     public static function cateIndex()
     {
-        $host = "http://jianengzhiye.qiuyunxin.com/uploads/";
+        $host = "../../uploads/";
         $cateList = Cate::all(function($query){
             $query->order('id','asc');
         });

@@ -31,7 +31,7 @@ class Goods extends Model
      */
     public static function getGoods($goods_name,$order = 'purchase')
     {
-        $host = "http://jianengzhiye.qiuyunxin.com/uploads/";
+        $host = "../../uploads/";
 //        $result = Goods::all(function ($query) use($goods_name,$order){
 //            $query->where('goods_name','like','%' . $goods_name . '%')->order($order,'desc')->paginate(15,false,[
 //                'query' => request()->param()
@@ -65,7 +65,7 @@ class Goods extends Model
      */
     public static function getGoodsWithCondition($goods_name,$condition)
     {
-        $host = "http://jianengzhiye.qiuyunxin.com/uploads/";
+        $host = "../../uploads/";
         $list = Goods::where('goods_name','like','%' . $goods_name . '%')->where('promotion',$condition)->order('purchase','desc')->paginate(15,false,[
             'query' => request()->param()
         ]);
@@ -112,7 +112,7 @@ class Goods extends Model
         {
             foreach ($image as $key => $value)
             {
-                $image[$key] = "http://jianengzhiye.qiuyunxin.com/uploads/" . $value;
+                $image[$key] = "../../uploads/" . $value;
             }
             $goods->picture = json_encode($image);
         }
