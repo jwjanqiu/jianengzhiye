@@ -62,8 +62,8 @@ class Controller
         if ($this->beforeActionList) {
             foreach ($this->beforeActionList as $method => $options) {
                 is_numeric($method) ?
-                $this->beforeAction($options) :
-                $this->beforeAction($method, $options);
+                    $this->beforeAction($options) :
+                    $this->beforeAction($method, $options);
             }
         }
     }
@@ -79,8 +79,8 @@ class Controller
     /**
      * 前置操作
      * @access protected
-     * @param  string $method  前置操作方法名
-     * @param  array  $options 调用参数 ['only'=>[...]] 或者 ['except'=>[...]]
+     * @param  string $method 前置操作方法名
+     * @param  array $options 调用参数 ['only'=>[...]] 或者 ['except'=>[...]]
      * @return void
      */
     protected function beforeAction($method, $options = [])
@@ -110,9 +110,9 @@ class Controller
      * 加载模板输出
      * @access protected
      * @param  string $template 模板文件名
-     * @param  array  $vars     模板输出变量
-     * @param  array  $replace  模板替换
-     * @param  array  $config   模板参数
+     * @param  array $vars 模板输出变量
+     * @param  array $replace 模板替换
+     * @param  array $config 模板参数
      * @return mixed
      */
     protected function fetch($template = '', $vars = [], $replace = [], $config = [])
@@ -124,9 +124,9 @@ class Controller
      * 渲染内容输出
      * @access protected
      * @param  string $content 模板内容
-     * @param  array  $vars    模板输出变量
-     * @param  array  $replace 替换内容
-     * @param  array  $config  模板参数
+     * @param  array $vars 模板输出变量
+     * @param  array $replace 替换内容
+     * @param  array $config 模板参数
      * @return mixed
      */
     protected function display($content = '', $vars = [], $replace = [], $config = [])
@@ -137,7 +137,7 @@ class Controller
     /**
      * 模板变量赋值
      * @access protected
-     * @param  mixed $name  要显示的模板变量
+     * @param  mixed $name 要显示的模板变量
      * @param  mixed $value 变量的值
      * @return $this
      */
@@ -177,11 +177,11 @@ class Controller
     /**
      * 验证数据
      * @access protected
-     * @param  array        $data     数据
+     * @param  array $data 数据
      * @param  string|array $validate 验证器名或者验证规则数组
-     * @param  array        $message  提示信息
-     * @param  bool         $batch    是否批量验证
-     * @param  mixed        $callback 回调方法（闭包）
+     * @param  array $message 提示信息
+     * @param  bool $batch 是否批量验证
+     * @param  mixed $callback 回调方法（闭包）
      * @return array|string|true
      * @throws ValidateException
      */
@@ -219,5 +219,23 @@ class Controller
         }
 
         return true;
+    }
+
+    /**
+     * api返回标准格式
+     * @param int $code 返回码
+     * @param string $msg 返回提醒信息
+     * @param array $data 返回数据体
+     * @return array
+     * @author Qiu
+     */
+    public function returnMsg($code = 1, $msg = '请求成功', $data = array())
+    {
+        $return = array(
+            'code' => $code,
+            'msg' => $msg,
+            'data' => (empty($data) || (!$data)) ? NULL : $data
+        );
+        return json_encode($return);
     }
 }

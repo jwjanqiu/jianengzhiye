@@ -24,6 +24,6 @@ class Index extends Controller
         $cate = Cate::all(function ($query){
             $query->order('id','asc');
         });
-        return json_encode($cate);
+        return $this->returnMsg(1,'请求成功',$cate);
     }
 }
