@@ -42,4 +42,16 @@ class WxApp extends Controller
         $this->assign('list', $list);
         return $this->fetch('../application/admin/view/wx_app/bannerSettings.html');
     }
+
+    public function banner_add()
+    {
+        $info = array(
+            'id' => '',
+            'name' => '',
+            'link' => ''
+        );
+        $this->assign('info',$info);
+        $this->assign('img_list','');
+        return $this->fetch();
+    }
 }

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>产品管理</title>
+    <meta name="description" content="这是一个 index 页面">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="../../static/assets/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="../../static/assets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <script src="../../static/assets/js/echarts.min.js"></script>
+    <link rel="stylesheet" href="../../static/assets/css/amazeui.min.css" />
+    <link rel="stylesheet" href="../../static/assets/css/amazeui.datatables.min.css" />
+    <link rel="stylesheet" href="../../static/assets/css/app.css">
+    <script src="../../static/assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../static/webuploader/0.1.5/webuploader.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../static/webuploader/0.1.5/webuploader.css">
+    <script type="text/javascript" charset="utf-8" src="../../static/UEeditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../../static/UEeditor/ueditor.all.min.js"> </script>
+    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+    <script type="text/javascript" charset="utf-8" src="../../static/UEeditor/lang/zh-cn/zh-cn.js"></script>
+
+</head>
+
+<body data-type="widgets">
+<script src="../../static/assets/js/theme.js"></script>
+<div class="am-g tpl-g">
+    <!-- 头部 -->
+    <header>
+        <!-- logo -->
+        <div class="am-fl tpl-header-logo">
+            <a href="javascript:;"><img src="../../static/assets/img/logo.png" alt=""></a>
+        </div>
+        <!-- 右侧内容 -->
+        <div class="tpl-header-fluid">
+            <!-- 侧边切换 -->
+            <div class="am-fl tpl-header-switch-button am-icon-list">
+                <span></span>
+            </div>
+            <!-- 搜索 -->
+            <div class="am-fl tpl-header-search">
+
+            </div>
+            <!-- 其它功能-->
+            <div class="am-fr tpl-header-navbar">
+                <ul>
+                    <!-- 欢迎语 -->
+                    <li class="am-text-sm tpl-header-navbar-welcome">
+
+                    </li>
+                    <!-- 新提示 -->
+                    <li class="am-dropdown" data-am-dropdown>
+                    </li>
+
+                    <!-- 退出 -->
+                    <li class="am-text-sm">
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </header>
+    <!-- 风格切换 -->
+    <!-- 侧边导航栏 -->
+    <div class="left-sidebar">
+        <!-- 用户信息 -->
+        <!-- 菜单 -->
+        <ul class="sidebar-nav">
+
+        </ul>
+    </div>
+
+    <!-- 内容区域 -->
+    <div class="tpl-content-wrapper">
+
+        <div class="container-fluid am-cf">
+            <div class="row">
+                <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
+                    <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 产品 <small>佳能纸业</small></div>
+                    {if condition="$info.id eq ''"}
+                    <p class="page-header-description">这里可以添加新的banner</p>
+                    {else/}<p class="page-header-description">这里编辑banner</p>
+                    {/if}
+                </div>
+                <!--<div class="am-u-lg-3 tpl-index-settings-button">-->
+                <!--<button type="button" class="page-header-button"><span class="am-icon-paint-brush"></span> 设置</button>-->
+                <!--</div>-->
+            </div>
+
+        </div>
+
+        <div class="row-content am-cf">
+
+            <div class="row">
+
+                <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                    <div class="widget am-cf">
+                        <div class="widget-head am-cf">
+                            <div class="widget-title am-fl">banner管理</div>
+                            <!--<div class="widget-function am-fr">-->
+                            <!--<a href="javascript:;" class="am-icon-cog"></a>-->
+                            <!--</div>-->
+                        </div>
+                        <div class="widget-body am-fr">
+
+                            <form class="am-form tpl-form-line-form" method="post" enctype="multipart/form-data" action="{:url('index/product_update')}"  onkeydown="if(event.keyCode==13){return false;}">
+                                <input type="hidden" name="id" value="{$info.id}">
+                                <div class="am-form-group">
+                                    <label for="name" class="am-u-sm-3 am-form-label">活动 <span class="tpl-form-line-small-title">Activity</span></label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" name="name" value="{$info.name}" placeholder="请输入活动名字">
+                                        <small>Please enter product name</small>
+                                    </div>
+                                </div>
+                                <div class="am-form-group">
+                                    <label for="link" class="am-u-sm-3 am-form-label">关联活动商品名 <span class="tpl-form-line-small-title">Link</span></label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" name="link" value="{$info.link}" placeholder="请输入活动商品名字">
+                                        <small>Please enter product name</small>
+                                    </div>
+                                </div>
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">banner预览图 <span class="tpl-form-line-small-title">Image</span></label>
+                                    <div class="am-u-sm-9">
+                                        {if condition="$img_list neq ''"}
+                                        {volist name="$img_list" id="vo"}
+                                        <img rel="{$vo.id}" src="{$vo.img}" style="width: 100px; height: 100px">
+                                        <input rel="{$vo.id}" name="old_img[]" type="hidden" value="{$vo.name}">
+                                        <a rel="{$vo.id}" onclick="delete_img('{$vo.id}')" href="javascript:;">删除</a>
+                                        {/volist}
+                                        {/if}
+                                        <div id="uploader" class="wu-example">
+                                            <!--用来存放item-->
+                                            <div id="fileList" class="uploader-list"></div>
+                                            <div class="btns">
+                                                <div id="filePicker">选择图片</div>
+                                                <!--<button id="ctlBtn" class="am-btn am-btn-primary tpl-btn-bg-color-success">开始上传</button>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input name="image" id="image" type="hidden">
+                                </div>
+                                <div class="am-form-group">
+                                    <div class="am-u-sm-9 am-u-sm-push-3">
+                                        <input type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success " value="提交">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../static/assets/js/amazeui.min.js"></script>
+<script src="../../static/assets/js/amazeui.datatables.min.js"></script>
+<script src="../../static/assets/js/dataTables.responsive.min.js"></script>
+<script src="../../static/assets/js/app.js"></script>
+<script src="../../static/assets/js/notify.js?version=2018"></script>
+
+<script type="text/javascript">
+    //富文本编辑器
+    // var ue = UE.getEditor('editor');
+
+    var $list = $("#fileList");
+    // var $btn = $("#ctlBtn");
+    // var state = "pending";
+    var thumbnailWidth = 100;   //缩略图高度和宽度 （单位是像素），当宽高度是0~1的时候，是按照百分比计算，具体可以看api文档
+    var thumbnailHeight = 100;
+    // $btn = $("#btn-star"),
+    // state = "pending",
+    // uploader;
+    var uploader = WebUploader.create({
+        auto: true,
+        swf: '../../static/webuploader/0.1.5/Uploader.swf',
+
+        // 文件接收服务端。
+        server: '{:url("index/image_process")}',
+
+        // 选择文件的按钮。可选。
+        // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+        pick: '#filePicker',
+
+        fileNumLimit: 1,
+
+        // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+        resize: false,
+        // 只允许选择图片文件。
+        accept: {
+            title: 'Images',
+            extensions: 'gif,jpg,jpeg,bmp,png',
+            mimeTypes: 'image/*'
+        }
+    });
+    // 当有文件添加进来的时候
+    uploader.on( 'fileQueued', function( file ) {
+        var $li = $(
+            '<div id="' + file.id + '" class="file-item thumbnail">' +
+            '<img>' +
+            // '<p class="state">等待上传...</p>'+
+            '</div>'
+            ),
+            $img = $li.find('img');
+        // $list为容器jQuery实例
+        $list.append( $li );
+        // 创建缩略图
+        // 如果为非图片文件，可以不用调用此方法。
+        // thumbnailWidth x thumbnailHeight 为 100 x 100
+        uploader.makeThumb( file, function( error, src ) {
+            if ( error ) {
+                $img.replaceWith('<span>不能预览</span>');
+                return;
+            }
+
+            $img.attr( 'src', src );
+        }, thumbnailWidth, thumbnailHeight );
+    });
+    // 文件上传过程中创建进度条实时显示。
+    uploader.on( 'uploadProgress', function( file, percentage ) {
+        var $li = $( '#'+file.id ),
+            $percent = $li.find('.progress span');
+        // 避免重复创建
+        if ( !$percent.length ) {
+            $percent = $('<p class="progress"><span></span></p>')
+                .appendTo( $li )
+                .find('span');
+        }
+        $percent.css( 'width', percentage * 100 + '%' );
+    });
+
+    // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+    uploader.on( 'uploadSuccess', function(file,response) {
+        $( '#'+file.id ).addClass('upload-state-done');
+        document.getElementById("image").value += response.name+',';
+        // console.log($('#image').val());
+    });
+    // 文件上传失败，显示上传出错。
+    uploader.on( 'uploadError', function(file) {
+        var $li = $( '#'+file.id ),
+            $error = $li.find('div.error');
+        // 避免重复创建
+        if ( !$error.length ) {
+            $error = $('<div class="error"></div>').appendTo( $li );
+        }
+        $error.text('上传失败');
+    });
+    // uploader.on('all', function (type) {
+    //     if (type === 'startUpload') {
+    //         state = 'uploading';
+    //     } else if (type === 'stopUpload') {
+    //         state = 'paused';
+    //     } else if (type === 'uploadFinished') {
+    //         state = 'done';
+    //     }
+    //
+    //     if (state === 'uploading') {
+    //         $btn.text('暂停上传');
+    //     } else {
+    //         $btn.text('开始上传');
+    //     }
+    // });
+    // 完成上传完了，成功或者失败，先删除进度条。
+    uploader.on( 'uploadComplete', function( file ) {
+        $( '#'+file.id ).find('.progress').remove();
+    });
+    // $btn.on('click', function () {
+    //     if (state === 'uploading') {
+    //         uploader.stop();
+    //     } else {
+    //         uploader.upload();
+    //     }
+    // });
+    //删除旧照片
+    function delete_img(data) {
+        $("a[rel^="+data+"]").remove();
+        $("input[rel^="+data+"]").remove();
+        $("img[rel^="+data+"]").remove();
+    }
+</script>
+</body>
+
+</html>
