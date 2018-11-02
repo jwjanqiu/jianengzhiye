@@ -8,6 +8,7 @@
 
 namespace app\api\controller;
 
+use app\admin\model\Banner;
 use app\admin\model\Cate;
 use think\Controller;
 
@@ -25,5 +26,14 @@ class Index extends Controller
             $query->order('id','asc');
         });
         return $this->returnMsg(1,'请求成功',$cate);
+    }
+
+    public function getIndexData()
+    {
+        $banner = Banner::all();
+        $data = array(
+            'banner' => $banner
+        );
+        return $this->returnMsg(1,'请求成功',$data);
     }
 }

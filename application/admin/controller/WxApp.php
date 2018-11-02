@@ -67,7 +67,7 @@ class WxApp extends Controller
     public function banner_update()
     {
         $info = input();
-        $host = "../../uploads/";
+        $host = "http://jianengzhiye.com/uploads/";
         $image_url = $host . $info['image'];
         $path = str_replace("\\","/",$image_url);
         $link = Goods::field('id')->where('goods_name',$info['link'])->find();
