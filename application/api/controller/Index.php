@@ -10,6 +10,7 @@ namespace app\api\controller;
 
 use app\admin\model\Banner;
 use app\admin\model\Cate;
+use app\admin\model\ChannelModel;
 use think\Controller;
 
 class Index extends Controller
@@ -28,12 +29,21 @@ class Index extends Controller
         return $this->returnMsg(1,'请求成功',$cate);
     }
 
+    /**
+     * 获取首页数据
+     * @return array
+     * @throws \think\exception\DbException
+     * @author Qiu
+     */
     public function getIndexData()
     {
         $banner = Banner::all();
+        $channel = ChannelModel::getChannel();
         $data = array(
-            'banner' => $banner
+            'banner' => $banner,
+            'channel' => $channel
         );
         return $this->returnMsg(1,'请求成功',$data);
     }
+
 }

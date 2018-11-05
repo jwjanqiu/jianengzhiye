@@ -43,6 +43,11 @@ class WxApp extends Controller
         return $this->fetch('../application/admin/view/wx_app/bannerSettings.html');
     }
 
+    /**
+     * 添加banner页面（banner添加页面）
+     * @return mixed
+     * @author Qiu
+     */
     public function banner_add()
     {
         $info = array(
@@ -55,6 +60,12 @@ class WxApp extends Controller
         return $this->fetch();
     }
 
+    /**
+     * 实时搜索
+     * @return false|string
+     * @throws \think\exception\DbException
+     * @author Qiu
+     */
     public function getProduct()
     {
         $name = input('search_name');
@@ -64,6 +75,14 @@ class WxApp extends Controller
         });
         return json_encode($list);
     }
+
+    /**
+     * 更新banner（处理添加逻辑）
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @author Qiu
+     */
     public function banner_update()
     {
         $info = input();
