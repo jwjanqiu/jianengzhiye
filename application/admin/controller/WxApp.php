@@ -9,6 +9,7 @@
 namespace app\admin\controller;
 
 use app\admin\model\Banner;
+use app\admin\model\ChannelModel;
 use app\admin\model\Goods;
 use think\Controller;
 
@@ -29,18 +30,28 @@ class WxApp extends Controller
     }
 
     /**
-     * 搜索Banner
+     * 搜索
      * @return mixed
      * @throws \think\exception\DbException
      * @author Qiu
      */
-    public function banner_search()
+    public function search()
     {
-        $name = input('search_banner');
-        $list = Banner::searchBanner($name);
+        $name = input('search');
+        $mode = input('mode');
+        switch ($mode) {
+            case 'banner':
+                $list = Banner::searchBanner($name);
+                $url = '../application/admin/view/wx_app/bannerSettings.html';
+                break;
+            case 'channel':
+                $list = ChannelModel::searchChannel($name);
+                $url = '../application/admin/view/wx_app/channelSettings.html';
+        }
+
         $this->assign('name', $name);
         $this->assign('list', $list);
-        return $this->fetch('../application/admin/view/wx_app/bannerSettings.html');
+        return $this->fetch($url);
     }
 
     /**
@@ -104,7 +115,7 @@ class WxApp extends Controller
     }
 
     /**
-     * banner删除
+     * 单一删除
      * @return array|int|string
      * @throws \think\exception\DbException
      * @author Qiu
@@ -117,6 +128,8 @@ class WxApp extends Controller
             case 'banner':
                 $result = Banner::get($id);
                 break;
+            case 'channel':
+                $result = ChannelModel::get($id);
         }
         if ($result->delete()) {
             return 1;
@@ -125,8 +138,19 @@ class WxApp extends Controller
         }
     }
 
+    /**
+     * 频道首页
+     * @return mixed
+     * @throws \think\exception\DbException
+     * @author Qiu
+     */
     public function channelSettings()
     {
+        $list = ChannelModel::order('sort_order')->paginate(15, false, [
+            'query' => request()->param()
+        ]);
+        $this->assign('list',$list);
+        $this->assign('name');
         return $this->fetch();
     }
 }

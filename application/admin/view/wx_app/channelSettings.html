@@ -65,7 +65,7 @@
         <ul class="sidebar-nav">
             <li class="sidebar-nav-heading">Components <span class="sidebar-nav-heading-info"> 小程序面板</span></li>
             <li class="sidebar-nav-link">
-                <a href="{:url('index/index')}" class="active">
+                <a href="{:url('WxApp/channelSettings')}" class="active">
                     <i class="am-icon-home sidebar-nav-link-logo"></i> channel设置
                 </a>
             </li>
@@ -90,7 +90,7 @@
                                 <div class="am-form-group">
                                     <div class="am-btn-toolbar">
                                         <div class="am-btn-group am-btn-group-xs">
-                                            <a type="button" href="{:url('WxApp/banner_add')}" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 新增</a>
+                                            <a type="button" href="{:url('WxApp/channel_add')}" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 新增</a>
                                             <a type="button" onclick="datadel()" class="am-btn am-btn-default am-btn-danger"><span class="am-icon-trash-o"></span> 批量删除</a>
                                         </div>
                                     </div>
@@ -101,10 +101,11 @@
 
                                 </div>
                             </div>
-                            <form action="{:url('WxApp/banner_search')}" enctype="multipart/form-data" name="search_form" method="post">
+                            <form action="{:url('WxApp/search')}" enctype="multipart/form-data" name="search_form" method="post">
                                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
                                     <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
-                                        <input type="text" name="search_banner" value="{$name}" class="am-form-field ">
+                                        <input type="text" name="search" value="{$name}" class="am-form-field ">
+                                        <input type="hidden" name="mode" value="channel">
                                         <span class="am-input-group-btn">
                                             <button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search" type="submit"></button>
                                         </span>
@@ -117,7 +118,7 @@
                                     <thead>
                                     <tr>
                                         <th><input type="checkbox" id="check_all" onclick="selectAll()"></th>
-                                        <th>活动</th>
+                                        <th>频道</th>
                                         <th>预览图</th>
                                         <th>创建时间</th>
                                         <th>更新时间</th>
@@ -129,7 +130,7 @@
                                     <tr class="gradeX">
                                         <td><input type="checkbox" value="{$value.id}" name="id[]"></td>
                                         <td>{$value.name}</td>
-                                        <td><img src="{$value.image_url}" style="max-height: 120px"> </td>
+                                        <td><img src="{$value.icon_url}" style="max-height: 120px"> </td>
                                         <td>{$value.create_time}</td>
                                         <td>{$value.update_time}</td>
                                         <td>
@@ -194,7 +195,7 @@
         layer.confirm('确认要删除吗？',function(index){
             $.ajax({
                 type: 'POST',
-                url: '/admin/wx_app/single_del?id=' + id + '&mode=banner',
+                url: '/admin/wx_app/single_del?id=' + id + '&mode=channel',
                 success: function(data){
                     $(obj).parents("tr").remove();
                     layer.msg('已删除!',{icon:1,time:1000});

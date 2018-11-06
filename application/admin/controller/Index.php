@@ -249,7 +249,9 @@ class Index extends Controller
                 case 'banner':
                     Banner::destroy($id_str);
                     break;
-
+                case 'channel':
+                    ChannelModel::destroy($id_str);
+                    break;
             }
         }
         return 1;

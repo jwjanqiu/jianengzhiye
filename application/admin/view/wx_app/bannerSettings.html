@@ -65,7 +65,7 @@
         <ul class="sidebar-nav">
             <li class="sidebar-nav-heading">Components <span class="sidebar-nav-heading-info"> 小程序面板</span></li>
             <li class="sidebar-nav-link">
-                <a href="{:url('index/index')}" class="active">
+                <a href="{:url('WxApp/bannerSettings')}" class="active">
                     <i class="am-icon-home sidebar-nav-link-logo"></i> banner设置
                 </a>
             </li>
@@ -101,10 +101,11 @@
 
                                 </div>
                             </div>
-                            <form action="{:url('WxApp/banner_search')}" enctype="multipart/form-data" name="search_form" method="post">
+                            <form action="{:url('WxApp/search')}" enctype="multipart/form-data" name="search_form" method="post">
                                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
                                     <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
-                                        <input type="text" name="search_banner" value="{$name}" class="am-form-field ">
+                                        <input type="text" name="search" value="{$name}" class="am-form-field ">
+                                        <input type="hidden" name="mode" value="banner">
                                         <span class="am-input-group-btn">
                                             <button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search" type="submit"></button>
                                         </span>
