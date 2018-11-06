@@ -284,6 +284,23 @@
                                     </div>
                                 </div>
                                 <div class="am-form-group">
+                                    <label for="cate" class="am-u-sm-3 am-form-label">分类 <span class="tpl-form-line-small-title">Cate</span></label>
+                                    <div class="am-u-sm-9">
+                                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
+                                            <!--<div class="am-form-group  tpl-table-list-select">-->
+                                            <div class="am-form-group">
+                                                <select name="channel" data-am-selected="{btnSize: 'sm'}">
+                                                    <option value="">所有频道</option>
+                                                    {volist name="select" id="value"}
+                                                    <option value="{$value.id}" {if condition="$info.channel_id eq $value.id"}selected="selected"{/if}>{$value.name}</option>
+                                                    {/volist}
+                                                </select>
+                                            </div>
+                                            <small>Please choose channel</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="am-form-group">
                                     <label class="am-u-sm-3 am-form-label">缩略图 <span class="tpl-form-line-small-title">Image</span></label>
                                     <div class="am-u-sm-9">
                                         {if condition="$img_list neq ''"}

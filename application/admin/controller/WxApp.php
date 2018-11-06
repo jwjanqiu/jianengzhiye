@@ -55,8 +55,8 @@ class WxApp extends Controller
             'name' => '',
             'link' => ''
         );
-        $this->assign('info',$info);
-        $this->assign('img_list','');
+        $this->assign('info', $info);
+        $this->assign('img_list', '');
         return $this->fetch();
     }
 
@@ -69,9 +69,9 @@ class WxApp extends Controller
     public function getProduct()
     {
         $name = input('search_name');
-        $condition['goods_name'] = array('like','%'.$name.'%');
-        $list = Goods::all(function ($query) use($condition){
-            $query->field('id,goods_name')->where($condition)->order('id','desc');
+        $condition['goods_name'] = array('like', '%' . $name . '%');
+        $list = Goods::all(function ($query) use ($condition) {
+            $query->field('id,goods_name')->where($condition)->order('id', 'desc');
         });
         return json_encode($list);
     }
@@ -88,18 +88,45 @@ class WxApp extends Controller
         $info = input();
         $host = "http://jianengzhiye.com/uploads/";
         $image_url = $host . $info['image'];
-        $path = str_replace("\\","/",$image_url);
-        $link = Goods::field('id')->where('goods_name',$info['link'])->find();
+        $path = str_replace("\\", "/", $image_url);
+        $link = Goods::field('id')->where('goods_name', $info['link'])->find();
         $data = array(
             'name' => $info['name'],
-            'image_url' => str_replace(',','',$path),
+            'image_url' => str_replace(',', '', $path),
             'link' => $link['id']
         );
         $result = Banner::create($data);
-        if ($result){
-            $this->success('修改成功','admin/WxApp/bannerSettings');
-        }else{
+        if ($result) {
+            $this->success('修改成功', 'admin/WxApp/bannerSettings');
+        } else {
             $this->success($result->getError());
         }
+    }
+
+    /**
+     * banner删除
+     * @return array|int|string
+     * @throws \think\exception\DbException
+     * @author Qiu
+     */
+    public function single_del()
+    {
+        $id = input('id');
+        $mode = input('mode');
+        switch ($mode) {
+            case 'banner':
+                $result = Banner::get($id);
+                break;
+        }
+        if ($result->delete()) {
+            return 1;
+        } else {
+            return $result->getError();
+        }
+    }
+
+    public function channelSettings()
+    {
+        return $this->fetch();
     }
 }
