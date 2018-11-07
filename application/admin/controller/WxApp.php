@@ -153,4 +153,16 @@ class WxApp extends Controller
         $this->assign('name');
         return $this->fetch();
     }
+
+    public function channel_add()
+    {
+        $info = array(
+            'id' => '',
+            'name' => '',
+
+        );
+        $this->assign('img_list');
+        $this->assign('info',$info);
+        return $this->fetch();
+    }
 }

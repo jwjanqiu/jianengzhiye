@@ -86,8 +86,8 @@
                         <small>佳能纸业</small>
                     </div>
                     {if condition="$info.id eq ''"}
-                    <p class="page-header-description">这里可以添加新的banner</p>
-                    {else/}<p class="page-header-description">这里编辑banner</p>
+                    <p class="page-header-description">这里可以添加新的channel</p>
+                    {else/}<p class="page-header-description">这里编辑channel</p>
                     {/if}
                 </div>
                 <!--<div class="am-u-lg-3 tpl-index-settings-button">-->
@@ -104,7 +104,7 @@
                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                     <div class="widget am-cf">
                         <div class="widget-head am-cf">
-                            <div class="widget-title am-fl">banner管理</div>
+                            <div class="widget-title am-fl">channel管理</div>
                             <!--<div class="widget-function am-fr">-->
                             <!--<a href="javascript:;" class="am-icon-cog"></a>-->
                             <!--</div>-->
@@ -112,31 +112,20 @@
                         <div class="widget-body am-fr">
 
                             <form class="am-form tpl-form-line-form" method="post" enctype="multipart/form-data"
-                                  action="{:url('WxApp/banner_update')}"
+                                  action="{:url('WxApp/channel_update')}"
                                   onkeydown="if(event.keyCode==13){return false;}">
                                 <input type="hidden" name="id" value="{$info.id}">
                                 <div class="am-form-group">
-                                    <label for="name" class="am-u-sm-3 am-form-label">活动 <span
-                                            class="tpl-form-line-small-title">Activity</span></label>
+                                    <label for="name" class="am-u-sm-3 am-form-label">频道 <span
+                                            class="tpl-form-line-small-title">Channel</span></label>
                                     <div class="am-u-sm-9">
                                         <input type="text" class="tpl-form-input" name="name" value="{$info.name}"
                                                placeholder="请输入活动名字">
-                                        <small>Please enter activity name</small>
+                                        <small>Please enter channel name</small>
                                     </div>
                                 </div>
                                 <div class="am-form-group">
-                                    <label for="link" class="am-u-sm-3 am-form-label">关联活动商品名 <span
-                                            class="tpl-form-line-small-title">Link</span></label>
-                                    <div class="am-u-sm-9">
-                                        <input type="text" class="tpl-form-input" name="link" list="product"
-                                               onkeyup="showResult(this.value)" value="{$info.link}"
-                                               placeholder="请输入活动商品名字">
-                                        <datalist id="product"></datalist>
-                                        <small>Please enter product name</small>
-                                    </div>
-                                </div>
-                                <div class="am-form-group">
-                                    <label class="am-u-sm-3 am-form-label">banner预览图 <span
+                                    <label class="am-u-sm-3 am-form-label">channel预览图 <span
                                             class="tpl-form-line-small-title">Image</span></label>
                                     <div class="am-u-sm-9">
                                         {if condition="$img_list neq ''"}
@@ -295,26 +284,6 @@
         $("img[rel^=" + data + "]").remove();
     }
 
-    /**
-     * 实时搜索
-     * @param value
-     */
-    function showResult(value) {
-        $.ajax({
-            type: "GET",
-            url: "/admin/wx_app/getProduct",
-            dataType: "json",
-            data: {"search_name": value},
-            success: function (data) {
-                var list = JSON.parse(data)
-                $("#product").empty()
-                for (var i = 0;i <= list.length; i++){
-                    $("#product").append('<option value="'+list[i].goods_name+'" label="'+list[i].id+'"></option>')
-                    console.log(list[i])
-                }
-            }
-        })
-    }
 </script>
 </body>
 
