@@ -112,7 +112,7 @@
                         <div class="widget-body am-fr">
 
                             <form class="am-form tpl-form-line-form" method="post" enctype="multipart/form-data"
-                                  action="{:url('WxApp/channel_update')}"
+                                  action="{:url('WxApp/channel_add')}"
                                   onkeydown="if(event.keyCode==13){return false;}">
                                 <input type="hidden" name="id" value="{$info.id}">
                                 <div class="am-form-group">
@@ -148,7 +148,7 @@
                                 </div>
                                 <div class="am-form-group">
                                     <div class="am-u-sm-9 am-u-sm-push-3">
-                                        <input type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success "
+                                        <input type="submit" name="doSubmit" class="am-btn am-btn-primary tpl-btn-bg-color-success "
                                                value="提交">
                                     </div>
                                 </div>

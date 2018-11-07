@@ -149,20 +149,40 @@ class WxApp extends Controller
         $list = ChannelModel::order('sort_order')->paginate(15, false, [
             'query' => request()->param()
         ]);
-        $this->assign('list',$list);
+        $this->assign('list', $list);
         $this->assign('name');
         return $this->fetch();
     }
 
     public function channel_add()
     {
-        $info = array(
-            'id' => '',
-            'name' => '',
+        if (isset($_POST['doSubmit'])) {
+            $info = input();
+            $host = "http://jianengzhiye.com/uploads/";
+            $icon_url = $host . $info['image'];
+            $path = str_replace("\\", "/", $icon_url);
+            $sort_order = ChannelModel::count();
+            $data = array(
+                'name' => $info['name'],
+                'icon_url' => str_replace(',', '', $path),
+                'url' => 'aaaa',
+                'sort_order' => $sort_order + 1
+            );
+            if ($result = ChannelModel::create($data)) {
+                $this->success('添加成功', 'admin/WxApp/channelSettings');
+            } else {
+                $this->success($result->getError());
+            }
+        } else {
+            $info = array(
+                'id' => '',
+                'name' => '',
 
-        );
-        $this->assign('img_list');
-        $this->assign('info',$info);
-        return $this->fetch();
+            );
+            $this->assign('img_list');
+            $this->assign('info', $info);
+            return $this->fetch();
+        }
+
     }
 }
