@@ -108,7 +108,7 @@ class WxApp extends Controller
         );
         $result = Banner::create($data);
         if ($result) {
-            $this->success('修改成功', 'admin/WxApp/bannerSettings');
+            $this->success('添加成功', 'admin/WxApp/bannerSettings');
         } else {
             $this->success($result->getError());
         }
@@ -154,9 +154,15 @@ class WxApp extends Controller
         return $this->fetch();
     }
 
+    /**
+     * 频道添加
+     * @return mixed
+     * @author Qiu
+     */
     public function channel_add()
     {
         if (isset($_POST['doSubmit'])) {
+
             $info = input();
             $host = "http://jianengzhiye.com/uploads/";
             $icon_url = $host . $info['image'];
@@ -183,6 +189,28 @@ class WxApp extends Controller
             $this->assign('info', $info);
             return $this->fetch();
         }
+    }
 
+    public function sort_order()
+    {
+        if (isset($_POST['doSubmit'])) {
+            $sort = input('sort/a');
+            $id = input('id/a');
+            foreach ($id as $key => $value) {
+                $list[] = array('id' => $value, 'sort_order' => $sort[$key]);
+            }
+            $channel = new ChannelModel();
+            if ($result = $channel->saveAll($list)) {
+                $this->success('修改成功', 'admin/WxApp/channelSettings');
+            } else {
+                $this->success($result->getError());
+            }
+        } else {
+            $list = ChannelModel::order('sort_order')->paginate(15, false, [
+                'query' => request()->param()
+            ]);
+        }
+        $this->assign('list', $list);
+        return $this->fetch();
     }
 }

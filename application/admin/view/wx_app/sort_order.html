@@ -90,9 +90,7 @@
                                 <div class="am-form-group">
                                     <div class="am-btn-toolbar">
                                         <div class="am-btn-group am-btn-group-xs">
-                                            <a type="button" href="{:url('WxApp/channel_add')}" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 新增</a>
-                                            <a type="button" onclick="datadel()" class="am-btn am-btn-default am-btn-danger"><span class="am-icon-trash-o"></span> 批量删除</a>
-                                            <a type="button" href="{:url('WxApp/sort_order')}" class="am-btn am-btn-default am-btn-secondary"><span class="am-icon-level-up">排序</span> </a>
+
                                         </div>
                                     </div>
                                 </div>
@@ -105,11 +103,7 @@
                             <form action="{:url('WxApp/search')}" enctype="multipart/form-data" name="search_form" method="post">
                                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
                                     <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
-                                        <input type="text" name="search" value="{$name}" class="am-form-field ">
-                                        <input type="hidden" name="mode" value="channel">
-                                        <span class="am-input-group-btn">
-                                            <button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search" type="submit"></button>
-                                        </span>
+
                                     </div>
                                 </div>
                             </form>
@@ -118,31 +112,36 @@
                                 <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r">
                                     <thead>
                                     <tr>
-                                        <th><input type="checkbox" id="check_all" onclick="selectAll()"></th>
+                                        <th><input type="hidden"></th>
                                         <th>频道</th>
                                         <th>预览图</th>
-                                        <th>创建时间</th>
-                                        <th>更新时间</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {volist name="list" id="value"}
-                                    <tr class="gradeX">
-                                        <td><input type="checkbox" value="{$value.id}" name="id[]"></td>
-                                        <td>{$value.name}</td>
-                                        <td><img src="{$value.icon_url}" style="max-height: 120px"> </td>
-                                        <td>{$value.create_time}</td>
-                                        <td>{$value.update_time}</td>
-                                        <td>
-                                            <div class="tpl-table-black-operation">
-                                                <a class="tpl-table-black-operation-del" onclick="cate_del(this,'{$value.id}')" href="javascript:;">
-                                                    <i class="am-icon-trash"></i> 删除
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    {/volist}
+                                        <form method="post" enctype="multipart/form-data" action="{:url('WxApp/sort_order')}">
+                                            {volist name="list" id="value"}
+                                                <tr class="gradeX">
+                                                    <td><input type="hidden" value="{$value.id}" name="id[]"></td>
+                                                    <td>{$value.name}</td>
+                                                    <td><img src="{$value.icon_url}" style="max-height: 120px"> </td>
+                                                    <td>
+                                                        <div class="tpl-table-black-operation">
+                                                            <input type="text" style="color: #0d0d0d" value="{$value.sort_order}" name="sort[]">
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            {/volist}
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td align="right">
+                                                    <input type="submit" name="doSubmit" class="am-btn am-btn-primary tpl-btn-bg-color-success "
+                                                           value="提交">
+                                                </td>
+                                            </tr>
+                                        </form>
                                     <!-- more data -->
                                     </tbody>
                                 </table>
@@ -172,60 +171,6 @@
 
 </body>
 <script type="text/javascript">
-    /*选中所有CheckBox*/
-    function selectAll(){
-        var a = document.getElementsByTagName("input");
-        if($("#check_all").is(':checked')==false){
-            for(var i = 0;i<a.length;i++){
-                if(a[i].type == "checkbox"){
-                    a[i].checked = false;
-                }
-            }
-        }
-        else{
-            for(var i = 0;i<a.length;i++){
-                if(a[i].type == "checkbox"){
-                    a[i].checked = true;
-                }
-            }
-        }
-    }
 
-    /*删除*/
-    function cate_del(obj,id){
-        layer.confirm('确认要删除吗？',function(index){
-            $.ajax({
-                type: 'POST',
-                url: '/admin/wx_app/single_del?id=' + id + '&mode=channel',
-                success: function(data){
-                    $(obj).parents("tr").remove();
-                    layer.msg('已删除!',{icon:1,time:1000});
-                },
-                error:function(data) {
-                    layer.msg('失败!',{icon:1,time:1000});
-                    console.log(data.msg);
-                },
-            });
-        });
-    }
-    /*批量删除*/
-    function datadel() {
-        var idsel = '';
-        $("input[name='id[]']").each(function (index,item) {
-            var val = $(this).val();
-            var checks = $(this).is(':checked');
-            if(checks){
-                idsel += val + ",";
-            }
-        });
-        $.post("{:url('index/multidel')}",
-            {id:idsel,mode:'channel'},
-            function (data) {
-                if(data){
-                    layer.msg('删除成功!',{icon:1,time:1000});
-                    setTimeout("location.href = window.location.href;",1000);
-                }
-            });
-    }
 </script>
 </html>
