@@ -9,6 +9,7 @@
 namespace app\admin\controller;
 
 use app\admin\model\Banner;
+use app\admin\model\Cate;
 use app\admin\model\ChannelModel;
 use app\admin\model\Goods;
 use think\Controller;
@@ -97,7 +98,7 @@ class WxApp extends Controller
     public function banner_update()
     {
         $info = input();
-        $host = "http://jianengzhiye.com/uploads/";
+        $host = config('img_url');
         $image_url = $host . $info['image'];
         $path = str_replace("\\", "/", $image_url);
         $link = Goods::field('id')->where('goods_name', $info['link'])->find();
@@ -164,7 +165,7 @@ class WxApp extends Controller
         if (isset($_POST['doSubmit'])) {
 
             $info = input();
-            $host = "http://jianengzhiye.com/uploads/";
+            $host = config('img_url');
             $icon_url = $host . $info['image'];
             $path = str_replace("\\", "/", $icon_url);
             $sort_order = ChannelModel::count();
@@ -191,6 +192,12 @@ class WxApp extends Controller
         }
     }
 
+    /**
+     * channel排序
+     * @return mixed
+     * @throws \think\exception\DbException
+     * @author Qiu
+     */
     public function sort_order()
     {
         if (isset($_POST['doSubmit'])) {
@@ -211,6 +218,26 @@ class WxApp extends Controller
             ]);
         }
         $this->assign('list', $list);
+        return $this->fetch();
+    }
+
+    public function brandSettings()
+    {
+        $host = config('img_url');
+        $path = str_replace("\\", "/", $host);
+        $list = Cate::paginate(15, false, [
+            'query' => request()->param()
+        ]);
+        foreach ($list as $key => $value) {
+            if ($value['image']) {
+                $image = json_decode($value->image, true);
+                $list[$key]['image'] = $path . $image[0];
+            } else {
+                $list[$key]['image'] = '';
+            }
+        }
+        $this->assign('list', $list);
+        $this->assign('name');
         return $this->fetch();
     }
 }

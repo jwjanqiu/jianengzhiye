@@ -50,6 +50,8 @@ return [
     'class_suffix'           => false,
     // 控制器类后缀
     'controller_suffix'      => false,
+    //图片地址
+    'img_url'                => 'http://jianengzhiye.com/uploads/',
 
     // +----------------------------------------------------------------------
     // | 模块设置

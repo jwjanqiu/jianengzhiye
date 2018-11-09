@@ -58,7 +58,7 @@ class Index extends Controller
 
         //销售最佳
         $info = GoodsModel::getMaxPurchase();
-        $host = "../../uploads/";
+        $host = config('img_url');
         $img_array = json_decode($info['picture']);
 //        print_r($img_array);exit();
         $detail = array(
@@ -202,7 +202,7 @@ class Index extends Controller
     //分类页面修改
     public function category_edit()
     {
-        $host = "../../uploads/";
+        $host = config('img_url');
         $path = str_replace("\\", "/", $host);
         $id = input('id');
         $info = CateModel::get($id);
@@ -309,7 +309,7 @@ class Index extends Controller
     //商品编辑页面
     public function product_edit()
     {
-        $host = "../../uploads/";
+        $host = config('img_url');
         $path = str_replace("\\", "/", $host);
         $id = input('id');
         $select = CateModel::all();
