@@ -9,6 +9,7 @@
 namespace app\admin\controller;
 
 use app\admin\model\Banner;
+use app\admin\model\BrandModel;
 use app\admin\model\Cate;
 use app\admin\model\ChannelModel;
 use app\admin\model\Goods;
@@ -221,23 +222,52 @@ class WxApp extends Controller
         return $this->fetch();
     }
 
+    /**
+     * 品牌设定首页
+     * @return mixed
+     * @throws \think\exception\DbException
+     * @author Qiu
+     */
     public function brandSettings()
     {
-        $host = config('img_url');
-        $path = str_replace("\\", "/", $host);
-        $list = Cate::paginate(15, false, [
-            'query' => request()->param()
-        ]);
-        foreach ($list as $key => $value) {
-            if ($value['image']) {
-                $image = json_decode($value->image, true);
-                $list[$key]['image'] = $path . $image[0];
-            } else {
-                $list[$key]['image'] = '';
-            }
-        }
+        $list = BrandModel::getBrand();
         $this->assign('list', $list);
         $this->assign('name');
         return $this->fetch();
+    }
+
+    /**
+     * 增加品牌
+     * @return mixed
+     * @author Qiu
+     */
+    public function brand_add()
+    {
+        if (isset($_POST['doSubmit'])) {
+
+        } else {
+            $info = array(
+                'id' => '',
+                'cate_name' => ''
+            );
+            $this->assign('info', $info);
+            return $this->fetch();
+        }
+    }
+
+    /**
+     * 实时搜索分类名字
+     * @return false|string
+     * @throws \think\exception\DbException
+     * @author Qiu
+     */
+    public function getCate()
+    {
+        $cate_name = input('search_name');
+        $condition['cate_name'] = array('like', '%' . $cate_name . '%');
+        $list = Cate::all(function ($query) use ($condition) {
+            $query->where($condition)->order('id', 'desc');
+        });
+        return json_encode($list);
     }
 }

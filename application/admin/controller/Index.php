@@ -219,7 +219,7 @@ class Index extends Controller
         $select = ChannelModel::all(function ($query) {
             $query->order('sort_order', 'asc');
         });
-        $this->assign('select',$select);
+        $this->assign('select', $select);
         $this->assign('img_list', $img_list);
         $this->assign('info', $info);
         $this->assign('username', cookie('username'));
@@ -251,6 +251,9 @@ class Index extends Controller
                     break;
                 case 'channel':
                     ChannelModel::destroy($id_str);
+                    break;
+                case 'brand';
+
                     break;
             }
         }
