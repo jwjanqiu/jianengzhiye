@@ -14,6 +14,7 @@ use app\admin\model\Cate;
 use app\admin\model\ChannelModel;
 use app\admin\model\Goods;
 use think\Controller;
+use think\Log;
 
 class WxApp extends Controller
 {
@@ -239,6 +240,7 @@ class WxApp extends Controller
     /**
      * 增加品牌
      * @return mixed
+     * @throws \think\exception\DbException
      * @author Qiu
      */
     public function brand_add()
@@ -250,6 +252,8 @@ class WxApp extends Controller
                 'id' => '',
                 'cate_name' => ''
             );
+            $cate = Cate::all();
+            $this->assign('cate',$cate);
             $this->assign('info', $info);
             return $this->fetch();
         }

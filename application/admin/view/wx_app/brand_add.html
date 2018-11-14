@@ -119,10 +119,16 @@
                                     <label for="brand" class="am-u-sm-3 am-form-label">品牌 <span
                                             class="tpl-form-line-small-title">Brand</span></label>
                                     <div class="am-u-sm-9">
-                                        <input type="text" class="tpl-form-input" name="cate_name" list="cate"
-                                               onkeyup="showResult(this.value)" value="{$info.cate_name}"
-                                               placeholder="请输入品牌名字">
-                                        <datalist id="cate"></datalist>
+                                        <div class="am-form-group">
+                                            <select name="name" id="cate_name" onchange="putValueToInput()" data-am-selected="{btnSize: 'sm'}">
+                                                <option value="">-请选择-</option>
+                                                {volist name="cate" id="value"}
+                                                  <option value="{$value.id}">{$value.cate_name}</option>
+                                                {/volist}
+                                            </select>
+                                            <input type="text" class="tpl-form-input" placeholder="-请选择-" id="input" onblur="inputValue()">
+                                            <div id="DIV"></div>
+                                        </div>
                                         <small>Please enter brand name</small>
                                     </div>
                                 </div>
@@ -167,6 +173,58 @@
         })
     }
 
+    /**
+     * 实现select选中值回现到input中，为这里的input就是对select标签内容的代替
+     */
+    function putValueToInput() {
+        var cate_name = document.getElementById("cate_name");
+        var perPage = cate_name.options[cate_name.selectedIndex].text;
+        var input = document.getElementById("input");
+        input.value = perPage;
+    }
+
+    /**
+     * 在input输入内容时，将input的value取出和select的options的值作对比；
+     * 实现搜素功能；
+     */
+    function inputValue() {
+        var input = document.getElementById("input").value;
+        var cate_name = document.getElementById("cate_name");
+        var options = cate_name.getElementsByTagName("option");
+        var div = document.getElementById("DIV");
+        div.innerHTML = "";
+        var a = 0;
+        for (var i = options.length - 1; i >= 1; i--){
+            var optionText = options[i].text;
+           if (optionText.indexOf(input) >= 0){
+               div.style.display = "block";
+               div.innerHTML += "<span style='font-size: 12px;' onclick='getValue(this)'>"+optionText+"</span><br/>";
+               a++;
+           }
+        }
+        if (a == 0){
+            div.style.display = "none";
+        }
+    }
+
+    /**
+     * 将选中的值传给select和input;
+     */
+    function getValue(obj) {
+        var cate_name = document.getElementById("cate_name");
+        var options = cate_name.getElementsByTagName("option");
+        var div = document.getElementById("DIV");
+        for (var i = options.length - 1;i >= 1;i--){
+            var optionText = options[i].text;
+            var optionValue = options[i].value;
+            if (obj.innerHTML == optionText){
+                cate_name.value = optionValue;
+                document.getElementById("input").value = optionText;
+                div.style.display = "none";
+                div.innerHTML = "";
+            }
+        }
+    }
 </script>
 </body>
 
