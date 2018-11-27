@@ -259,22 +259,6 @@ class WxApp extends Controller
             return $this->fetch();
         }
     }
-    public function brand_add1()
-    {
-        if (isset($_POST['doSubmit'])) {
-            $info = input();
-            var_dump($info);
-        } else {
-            $info = array(
-                'id' => '',
-                'cate_name' => ''
-            );
-            $cate = Cate::all();
-            $this->assign('cate',$cate);
-            $this->assign('info', $info);
-            return $this->fetch();
-        }
-    }
 
     /**
      * 实时搜索分类名字
