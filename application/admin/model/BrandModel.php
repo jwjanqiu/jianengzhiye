@@ -22,19 +22,34 @@ class BrandModel extends Model
      */
     public static function getBrand()
     {
-        $host = config('img_url');
-        $path = str_replace("\\", "/", $host);
         $list = self::order('sort_order')->paginate(15, false, [
             'query' => request()->param()
         ]);
-        foreach ($list as $key => $value) {
-            if ($value['image']) {
-                $image = json_decode($value->image, true);
-                $list[$key]['image'] = $path . $image[0];
-            } else {
-                $list[$key]['image'] = '';
-            }
-        }
+        return $list;
+    }
+
+    /**
+     * 添加数据
+     * @param $data
+     * @return BrandModel
+     * @author Qiu
+     */
+    public static function insertData($data)
+    {
+        $result = self::create($data);
+        return $result;
+    }
+
+    /**
+     * api获取品牌类目
+     * @return BrandModel[]|false
+     * @throws \think\exception\DbException
+     * @author Qiu
+     */
+    public static function apiGetBrand(){
+        $list = self::all(function ($query) {
+            $query->order('sort_order');
+        });
         return $list;
     }
 }

@@ -165,7 +165,6 @@ class WxApp extends Controller
     public function channel_add()
     {
         if (isset($_POST['doSubmit'])) {
-
             $info = input();
             $host = config('img_url');
             $icon_url = $host . $info['image'];
@@ -246,12 +245,36 @@ class WxApp extends Controller
     public function brand_add()
     {
         if (isset($_POST['doSubmit'])) {
-            $info = input();
-            var_dump($info);
+            //获取统计
+            $count = BrandModel::count();
+            if ($count >= 6){
+                return $this->error('已超过上限');
+            }
+            $cate_id = input('cate_id');
+            //根据cate_id获取图片，名字
+            $cate = Cate::find($cate_id);
+            $name = $cate['cate_name'];
+            $host = config('img_url');
+            $image = $cate['image'] ? json_decode($cate['image'],true) : '';
+            $image_url = isset($image[0]) ? $host . $image[0] : '';
+            $pic_url = str_replace("\\", "/", $image_url);
+            //根据cate_id获取产品最低价格
+            $floor_price = Goods::where('cate_id',$cate_id)->order('retail_price','asc')->value('retail_price');
+            $data = array(
+                'cate_id' => $cate_id,
+                'name' => $name,
+                'pic_url' => $pic_url,
+                'sort_order' => $count + 1,
+                'floor_price' => $floor_price
+            );
+            if($result = BrandModel::insertData($data)){
+                return $this->success('添加成功','admin/WxApp/brandSettings');
+            }else{
+                return $this->error($result->getError());
+            }
         } else {
             $info = array(
                 'id' => '',
-                'cate_name' => ''
             );
             $cate = Cate::all();
             $this->assign('cate',$cate);

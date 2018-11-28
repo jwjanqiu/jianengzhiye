@@ -9,6 +9,7 @@
 namespace app\api\controller;
 
 use app\admin\model\Banner;
+use app\admin\model\BrandModel;
 use app\admin\model\Cate;
 use app\admin\model\ChannelModel;
 use think\Controller;
@@ -39,9 +40,11 @@ class Index extends Controller
     {
         $banner = Banner::all();
         $channel = ChannelModel::getChannel();
+        $brand = BrandModel::apiGetBrand();
         $data = array(
             'banner' => $banner,
-            'channel' => $channel
+            'channel' => $channel,
+            'brand' => $brand
         );
         return $this->returnMsg(1,'请求成功',$data);
     }
