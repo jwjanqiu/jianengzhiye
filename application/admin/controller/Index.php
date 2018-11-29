@@ -3,6 +3,7 @@
 namespace app\admin\controller;
 
 use app\admin\model\Banner;
+use app\admin\model\BrandModel;
 use app\admin\model\ChannelModel;
 use app\admin\model\Consume;
 use app\admin\model\Membership;
@@ -253,7 +254,7 @@ class Index extends Controller
                     ChannelModel::destroy($id_str);
                     break;
                 case 'brand';
-
+                    BrandModel::destroy($id_str);
                     break;
             }
         }

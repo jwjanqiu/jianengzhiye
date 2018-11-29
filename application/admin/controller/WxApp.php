@@ -133,6 +133,10 @@ class WxApp extends Controller
                 break;
             case 'channel':
                 $result = ChannelModel::get($id);
+                break;
+            case 'brand':
+                $result = BrandModel::get($id);
+                break;
         }
         if ($result->delete()) {
             return 1;
@@ -199,7 +203,7 @@ class WxApp extends Controller
      * @throws \think\exception\DbException
      * @author Qiu
      */
-    public function sort_order()
+    public function channel_sort_order()
     {
         if (isset($_POST['doSubmit'])) {
             $sort = input('sort/a');
@@ -297,5 +301,31 @@ class WxApp extends Controller
             $query->where($condition)->order('id', 'desc');
         });
         return json_encode($list);
+    }
+
+    /**
+     * brand排序修改
+     * @return mixed
+     * @throws \think\exception\DbException
+     * @author Qiu
+     */
+    public function brand_sort_order(){
+        if (isset($_POST['doSubmit'])){
+            $sort = input('sort/a');
+            $id = input('id/a');
+            foreach ($id as $key => $value) {
+                $list[] = array('id' => $value, 'sort_order' => $sort[$key]);
+            }
+            $brand = new BrandModel();
+            if ($result = $brand->saveAll($list)) {
+                $this->success('修改成功', 'admin/WxApp/brandSettings');
+            } else {
+                $this->success($result->getError());
+            }
+        }else{
+            $list = BrandModel::getBrand();
+        }
+        $this->assign('list',$list);
+        return $this->fetch();
     }
 }
